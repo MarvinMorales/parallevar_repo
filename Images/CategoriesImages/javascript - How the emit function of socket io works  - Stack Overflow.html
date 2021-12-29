@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html class="html__responsive"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <title>javascript - How the emit function of socket io works? - Stack Overflow</title>
+        <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+        <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+        <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="https://stackoverflow.com/opensearch.xml">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+
+
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works">
+        <meta property="og:site_name" content="Stack Overflow">
+        <meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:domain" content="stackoverflow.com">
+        <meta name="twitter:title" property="og:title" itemprop="name" content="How the emit function of socket io works?">
+        <meta name="twitter:description" property="og:description" itemprop="description" content="In the official site of socket.io i have a code example, my doubt is, the emit function will emit the event for all client or just for the client who connected in the sever? The example code:
+
+Serv...">
+            <script src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/pubads_impl_rendering_2019111801.js"></script><script src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/rules-p-c1rF4kxgLUzNc.js" async=""></script><script async="" src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/quant.js"></script><script async="" src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/beacon.js"></script><script async="" src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/analytics.js"></script><script src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/jquery.js"></script>
+        <script src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/stub.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/stacks.css">
+    <link rel="stylesheet" type="text/css" href="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/primary.css">
+
+    
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'How the emit function of socket io works?'" href="https://stackoverflow.com/feeds/question/43809245">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:2,shownCommentCount:2,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:43809245});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '43809245');
+                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        <script>
+        StackExchange.init({"locale":"en","serverTime":1574995218,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","negativeVoteScoreFloor":null,"enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"6f573de0ae6ff6c91147264789551f573b35dbca3e3c1183e804b83e1c9df04a","tid":"2915c645-6b50-09cc-6f1c-18b7c8f8b1dd","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4},"svgIconPath":"https://cdn.sstatic.net/Img/svg-icons","svgIconHash":"53fe1f91bb82"}, {"userProfile":{"openGraphAPIKey":"4a307e43-b625-49bb-af15-ffadf2bda017"},"userMessaging":{},"tags":{},"snippets":{"renderDomain":"stacksnippets.net","snippetsEnabled":true},"slack":{"sidebarAdDismissCookie":"slack-sidebar-ad"},"site":{"allowImageUploads":true,"enableImgurHttps":true,"enableUserHovercards":true,"forceHttpsImages":true,"styleCode":true},"questions":{"showPostNoticesV2":true},"paths":{},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000},"mentions":{"maxNumUsersInDropdown":50},"markdown":{"asteriskIntraWordEmphasis":true},"flags":{"allowRetractingCommentFlags":true,"allowRetractingFlags":true},"comments":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"81a7c250c473","js/moderator.en.js":"188e06c3da4f","js/full-anon.en.js":"969c2baf217b","js/full.en.js":"99d6d7ce6a4c","js/wmd.en.js":"2cc6c5f01ed6","js/mobile.en.js":"b2b68dcf671f","js/help.en.js":"bcaf279b6d04","js/tageditor.en.js":"0acb93384417","js/tageditornew.en.js":"7fb9cacaa5b0","js/inline-tag-editing.en.js":"06aa7aefcf3f","js/revisions.en.js":"c096ee06038c","js/review.en.js":"d9f82f0bc8e7","js/tagsuggestions.en.js":"a9ff449efcdc","js/post-validation.en.js":"d9783566f904","js/explore-qlist.en.js":"be3b9d8380ea","js/events.en.js":"c07c1cfae126","js/keyboard-shortcuts.en.js":"62c549661637","js/adops.en.js":"6b9883f0531e","js/begin-edit-event.en.js":"8f05bb4ed432","js/ask.en.js":"43f1476c5dac","js/question-editor.en.js":"","js/snippet-javascript-codemirror.en.js":"63f81d48eeda"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    <noscript id="noscript-css"><style>body,.top-bar{margin-top:1.9em}</style></noscript>
+    <script async="" src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/full-anon.js"></script><script async="" src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/post-validation.js"></script><script async="" src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/prettify-full.js"></script><link rel="stylesheet" href="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/clc.css" type="text/css"><link rel="preload" href="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/integrator.js" as="script"><script type="text/javascript" src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/integrator.js"></script><link rel="preload" href="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/integrator_002.js" as="script"><script type="text/javascript" src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/integrator_002.js"></script><script src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/pubads_impl_2019111801.js" async=""></script></head>
+        <body class="question-page unified-theme" cz-shortcut-listen="true">
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<header class="top-bar js-top-bar top-bar__network _fixed">
+    <div class="wmx12 mx-auto grid ai-center h100" role="menubar">
+        <div class="-main grid--cell">
+                <a href="#" class="left-sidebar-toggle p0 ai-center jc-center js-left-sidebar-toggle" role="menuitem" aria-haspopup="true" aria-controls="left-sidebar" aria-expanded="false"><span class="ps-relative"></span></a>
+                <div class="topbar-dialog leftnav-dialog js-leftnav-dialog dno">
+                    <div class="left-sidebar js-unpinned-left-sidebar" data-can-be="left-sidebar" data-is-here-when="sm"></div>
+                </div>
+                                <a href="https://stackoverflow.com/" class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+                        <span class="-img _glyph">Stack Overflow</span>
+                    </a>
+
+
+
+        </div>
+
+            <ol class="list-reset grid gs4" role="presentation">
+                <li class="grid--cell">
+                    <a href="#" class="-marketing-link js-gps-track js-products-menu" aria-controls="products-popover" data-controller="s-popover" data-action="s-popover#toggle" data-s-popover-placement="bottom" data-gps-track="top_nav.products.click({location:2, destination:1})" data-ga="[&quot;top navigation&quot;,&quot;products menu click&quot;,null,null,null]">
+                        Products
+                    </a>
+                </li>
+
+                    <li class="grid--cell md:d-none">
+                        <a href="https://stackoverflow.com/teams/customers" class="-marketing-link js-gps-track" data-gps-track="top_nav.products.click({location:2, destination:7})" data-ga="[&quot;top navigation&quot;,&quot;customers menu click&quot;,null,null,null]">Customers</a>
+                    </li>
+                    <li class="grid--cell md:d-none">
+                        <a href="https://stackoverflow.com/teams/use-cases" class="-marketing-link js-gps-track" data-gps-track="top_nav.products.click({location:2, destination:8})" data-ga="[&quot;top navigation&quot;,&quot;use cases menu click&quot;,null,null,null]">Use cases</a>
+                    </li>
+            </ol>
+            <div class="s-popover ws2 p6" id="products-popover" role="menu" aria-hidden="true" x-placement="bottom" style="position: absolute; transform: translate3d(337px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                <div class="s-popover--arrow"></div>
+                <ol class="list-reset s-anchors s-anchors__inherit">
+                    <li>
+                        <a href="https://stackoverflow.com/questions" class="d-block py6 px6 bar-sm h:bg-orange-500 h:fc-white js-gps-track" data-gps-track="top_nav.products.click({location:2, destination:2})" data-ga="[&quot;top navigation&quot;,&quot;public qa submenu click&quot;,null,null,null]">
+                            <span class="fs-body1 d-block">Stack Overflow</span>
+                            <span class="fs-caption d-block o70">Public questions and answers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/teams" class="d-block py6 px6 bar-sm h:bg-orange-500 h:fc-white js-gps-track" data-gps-track="top_nav.products.click({location:2, destination:3})" data-ga="[&quot;top navigation&quot;,&quot;teams submenu click&quot;,null,null,null]">
+                            <span class="fs-body1 d-block">Teams</span>
+                            <span class="fs-caption d-block o70">Private questions and answers for your team</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/enterprise" class="d-block py6 px6 bar-sm h:bg-orange-500 h:fc-white js-gps-track" data-gps-track="top_nav.products.click({location:2, destination:4})" data-ga="[&quot;top navigation&quot;,&quot;enterprise submenu click&quot;,null,null,null]">
+                            <span class="fs-body1 d-block">Enterprise</span>
+                            <span class="fs-caption d-block o70">Private self-hosted questions and answers for your enterprise</span>
+                        </a>
+                    </li>
+                    <li class="bt bc-black-3 mln6 mrn6 mt6 pt6 px6">
+                        <a href="https://www.stackoverflowbusiness.com/talent" class="d-block py6 px6 bar-sm h:bg-orange-500 h:fc-white js-gps-track" data-gps-track="top_nav.products.click({location:2, destination:5})" data-ga="[&quot;top navigation&quot;,&quot;talent submenu click&quot;,null,null,null]">
+                            <span class="fs-body1 d-block">Talent</span>
+                            <span class="fs-caption d-block o70">Hire technical talent</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.stackoverflowbusiness.com/advertising" class="d-block py6 px6 bar-sm h:bg-orange-500 h:fc-white js-gps-track" data-gps-track="top_nav.products.click({location:2, destination:6})" data-ga="[&quot;top navigation&quot;,&quot;advertising submenu click&quot;,null,null,null]">
+                            <span class="fs-body1 d-block">Advertising</span>
+                            <span class="fs-caption d-block o70">Reach developers worldwide</span>
+                        </a>
+                    </li>
+
+                </ol>
+            </div>
+
+            <form id="search" role="search" action="/search" method="get" class="grid--cell fl-grow1 searchbar px12 js-searchbar " autocomplete="off">
+                    <div class="ps-relative">
+                        <input name="q" type="text" placeholder="Search…" autocomplete="off" maxlength="240" class="s-input s-input__search js-search-field " aria-label="Search" aria-controls="top-search" data-controller="s-popover" data-action="focus-&gt;s-popover#show" data-s-popover-placement="bottom-start">
+                        <svg aria-hidden="true" class="svg-icon s-input-icon s-input-icon__search iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"></path></svg>
+<div class="s-popover p0 wmx100 wmn4 sm:wmn-initial js-top-search-popover s-popover--arrow__tl" id="top-search" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
+    <div class="js-spinner p24 grid ai-center jc-center d-none">
+        <div class="s-spinner s-spinner__sm fc-orange-400">
+            <div class="v-visible-sr">Loading…</div>
+        </div>
+    </div>
+
+    <span class="v-visible-sr js-screen-reader-info"></span>
+    <div class="js-ac-results overflow-y-auto hmx3 d-none"></div>
+
+    <div class="js-search-hints" aria-describedby="Tips for searching"></div>
+</div>
+                    </div>
+            </form>
+
+        
+
+
+
+<ol class="overflow-x-auto ml-auto -secondary grid ai-center list-reset h100 user-logged-out" role="presentation">
+        <li class="-item searchbar-trigger"><a href="#" class="-link js-searchbar-trigger" role="button" aria-label="Search" aria-haspopup="true" aria-controls="search" title="Click to show search"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"></path></svg></a></li>
+        
+            <li class="-ctas">
+                        <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f43809245%2fhow-the-emit-function-of-socket-io-works" class="login-link s-btn btn-topbar-clear py8 js-gps-track" rel="nofollow" data-gps-track="login.click" data-ga="[&quot;top navigation&quot;,&quot;login button click&quot;,null,null,null]">Log in</a>
+                        <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent" class="login-link s-btn s-btn__primary py8 btn-topbar-primary" rel="nofollow" data-ga="[&quot;sign up&quot;,&quot;Sign Up Navigation&quot;,&quot;Header&quot;,null,null]">Sign up</a>
+
+            </li>
+
+    <li class="js-topbar-dialog-corral" role="presentation">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno" role="menu">
+        <div class="header">
+            <h3><a href="https://stackoverflow.com/">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li class="grid">
+                            <div class="fl1">
+            <a href="https://stackoverflow.com/" class="current-site-link site-link js-gps-track grid gs8 gsx" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="favicon favicon-stackoverflow site-icon grid--cell" title="Stack Overflow"></div>
+        <span class="grid--cell fl1">
+            Stack Overflow
+        </span>
+    </a>
+
+    </div>
+    <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+                    </li>
+                    <li class="related-site grid">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                            <a href="https://meta.stackoverflow.com/" class="site-link js-gps-track grid gs8 gsx" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="favicon favicon-stackoverflowmeta site-icon grid--cell" title="Meta Stack Overflow"></div>
+        <span class="grid--cell fl1">
+            Meta Stack Overflow
+        </span>
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f43809245%2fhow-the-emit-function-of-socket-io-works" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog/" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+    </li>
+</ol>
+
+    </div>
+</header>
+
+    <script>
+        StackExchange.ready(function () { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(50, 10);     </script>
+
+
+
+    <div id="announcement-banner" class="js-announcement-banner bg-black-700 fc-white ff-sans fs-body2 py2" data-campaign="2019-11-25.through-the-loop" data-cookie="notice-ttl" data-expire-date="1575694800000">
+        <div class="grid jc-space-between wmx12 mx-auto px16 py8 ">
+            <div class="grid--cell mr12">
+                We’re committed to <a target="_blank" class="s-link js-link js-gps-track fw-bold fc-blue-400 " href="https://stackoverflow.blog/2019/11/25/introducing-the-loop-a-foundation-in-listening/" data-ga="[&quot;through-the-loop&quot;,&quot;Announcement Banner&quot;,&quot;https://stackoverflow.blog/2019/11/25/introducing-the-loop-a-foundation-in-listening/&quot;,null,{&quot;dimension4&quot;:&quot;through-the-loop&quot;}]" data-gps-track="announcement_banner.click({campaign: '2019-11-25.through-the-loop', location: 2, action: 2})">working with you to build the future of Stack Overflow</a>. Your input matters in our “Through the loop” survey.
+            </div>
+            <a class="grid-cell fc-white js-dismiss js-gps-track" href="#" title="dismiss" data-gps-track="announcement_banner.click({campaign: '2019-11-25.through-the-loop', location: 2, action: 1})"><svg aria-hidden="true" class="svg-icon m0 iconClear" width="18" height="18" viewBox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9 15 4.41z"></path></svg></a>
+        </div>
+    </div>
+    <script>
+        StackExchange.ready(function () {
+            StackExchange.Notice.announcementBannerInit();
+        });
+    </script>
+
+
+
+
+
+    <div class="container">
+
+
+
+
+
+
+<div id="left-sidebar" data-is-here-when="md lg" class="left-sidebar js-pinned-left-sidebar">
+    <div class="left-sidebar--sticky-container js-sticky-leftnav">
+        <nav role="navigation">
+            <ol class="nav-links">
+    <li>
+        <a href="https://stackoverflow.com/" class="pl8 js-gps-track nav-links--link" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+Home        </a>
+    </li>
+                <li>
+                    <ol class="nav-links">
+                            <li class="fs-fine tt-uppercase ml8 mt16 mb4 fc-light">Public</li>
+                            <li class=" youarehere">
+        <a id="nav-questions" href="https://stackoverflow.com/questions" class="pl8 js-gps-track nav-links--link -link__with-icon" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">
+<svg aria-hidden="true" class="svg-icon iconGlobe" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zM8 15.32a6.4 6.4 0 0 1-5.23-7.75L7 11.68v.8c0 .88.12 1.32 1 1.32v1.52zm5.72-2c-.2-.66-1-1.32-1.72-1.32h-1v-2c0-.44-.56-1-1-1H6V7h1c.44 0 1-.56 1-1V5h2c.88 0 1.4-.72 1.4-1.6v-.33a6.4 6.4 0 0 1 2.32 10.24v.01z"></path></svg>                <span class="-link--channel-name">Stack Overflow</span>
+        </a>
+    </li>
+
+    <li>
+        <a id="nav-tags" href="https://stackoverflow.com/tags" class=" js-gps-track nav-links--link" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">
+Tags        </a>
+    </li>
+    <li>
+        <a id="nav-users" href="https://stackoverflow.com/users" class=" js-gps-track nav-links--link" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">
+Users        </a>
+    </li>
+    <li>
+        <a id="nav-jobs" href="https://stackoverflow.com/jobs?so_medium=StackOverflow&amp;so_source=SiteNav" class=" js-gps-track nav-links--link" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">
+Jobs        </a>
+    </li>
+                                                                    </ol>
+                </li>
+                    <li>
+                        <ol class="nav-links">
+                                <li class="grid ai-center jc-space-between ml8 mt24 mb4">
+                                    <div class="grid--cell tt-uppercase fs-fine fc-light">Teams</div>
+                                    <div class="grid--cell fs-fine fc-light mr4">
+                                        <a href="javascript:void(0)" class="s-link s-link__inherit js-gps-track" role="button" aria-controls="popover-teams-create-cta" data-controller="s-popover" data-action="s-popover#toggle" data-s-popover-placement="bottom-start" data-s-popover-toggle-class="is-selected" data-gps-track="teams.create.left-sidenav.click({ Action: ShowInfo })" data-ga="[&quot;teams left navigation - anonymous&quot;,&quot;left nav show teams info&quot;,null,null,null]">
+                                            What’s this?
+                                        </a>
+
+                                        <div class="s-popover w-auto p16" id="popover-teams-create-cta" role="menu" aria-hidden="true" x-placement="bottom-start" style="position: absolute; transform: translate3d(98px, 254px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            <div class="s-popover--arrow"></div>
+
+                                            <div class="ps-relative overflow-hidden">
+                                                <p class="mb2"><strong>Teams</strong></p>
+                                                <p class="mb16 fs-caption fc-medium">Q&amp;A for Work</p>
+                                                <p class="mb8 fs-caption fc-medium">
+                                                        
+                                                            Stack Overflow for Teams is a private, secure spot for you and
+                                                            your coworkers to find and share information.
+                                                        
+                                                </p>
+                                                <a href="https://stackoverflow.com/teams" class="js-gps-track ws-nowrap d-block" data-gps-track="teams.create.left-sidenav.click({ Action: CtaClick })" data-ga="[&quot;teams left navigation - anonymous&quot;,&quot;left nav cta&quot;,&quot;stackoverflow.com/teams&quot;,null,null]">
+                                                        Learn more
+                                                </a>
+                                            </div>
+
+                                            <div class="ps-absolute t8 r8">
+                                                <svg width="53" height="49" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49 11l.2 31H18.9L9 49v-7H4V8h31" fill="#CCEAFF"></path><path d="M44.5 19v-.3l-.2-.1-18-13-.1-.1H.5v33h4V46l.8-.6 9.9-6.9h29.3V19z" stroke="#1060E1" stroke-miterlimit="10"></path><path d="M31 2l6-1.5 7 2V38H14.9L5 45v-7H1V6h25l5-4z" fill="#fff"></path><path d="M7 16.5h13m-13 6h14m-14 6h18" stroke="#1060E1" stroke-miterlimit="10"></path><path d="M39 30a14 14 0 1 0 0-28 14 14 0 0 0 0 28z" fill="#FFB935"></path><path d="M50.5 14a13.5 13.5 0 1 1-27 0 13.5 13.5 0 0 1 27 0z" stroke="#F48024" stroke-miterlimit="10"></path><path d="M32.5 21.5v-8h9v8h-9zm2-9.5V9.3A2.5 2.5 0 0 1 37 6.8a2.5 2.5 0 0 1 2.5 2.5V12h-5zm2 3v2m1-2v2" stroke="#fff" stroke-miterlimit="10"></path></svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="ps-relative">
+                                    <a href="https://stackoverflow.com/teams" class="pl8 js-gps-track nav-links--link" title="Stack Overflow for Teams is a private, secure spot for your organization's questions and answers." data-gps-track="teams.create.left-sidenav.click({ Action: TeamsClick })" data-ga="[&quot;teams left navigation - anonymous&quot;,&quot;left nav team click&quot;,&quot;stackoverflow.com/teams&quot;,null,null]">
+                                        <div class="grid ai-center">
+                                            <div class="grid--cell s-avatar va-middle bg-orange-400">
+                                                <div class="s-avatar--letter mtn1">
+                                                    <svg aria-hidden="true" class="svg-icon iconBriefcaseSm" width="14" height="14" viewBox="0 0 14 14"><path d="M4 3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h.5c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 0 1 2 10.5v-5C2 4.67 2.67 4 3.5 4H4V3zm5 1V3H5v1h4z"></path></svg>
+                                                </div>
+                                                <svg aria-hidden="true" class="svg-icon native s-avatar--badge iconShieldXSm" width="9" height="10" viewBox="0 0 9 10"><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#fff"></path><path d="M1 2.5L4.5 1 8 2.5v2.51C8 7.34 5.34 9 4.5 9 3.65 9 1 7.34 1 5.01V2.5zm2.98 3.02L3.2 7h2.6l-.78-1.48a.4.4 0 0 1 .15-.38c.34-.24.73-.7.73-1.14 0-.71-.5-1.23-1.41-1.23-.92 0-1.39.52-1.39 1.23 0 .44.4.9.73 1.14.12.08.18.23.15.38z" fill="#6A7E7C"></path></svg>
+                                            </div>
+                                            <div class="grid--cell pl6 js-create-team-btn-with-tooltip">
+First 25 Users Free                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                        </ol>
+                    </li>
+            </ol>
+        </nav>
+    </div>
+
+</div>
+
+
+        <div id="content" class="snippet-hidden">
+
+
+            
+
+
+<div itemprop="mainEntity" itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+    <div class="inner-content clearfix">
+
+        
+
+                    <div id="question-header" class="grid sm:fd-column">
+                        <h1 itemprop="name" class="grid--cell fs-headline1 fl1 ow-break-word mb8"><a href="https://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works" class="question-hyperlink">How the emit function of socket io works?</a></h1>
+
+                <div class="ml12 aside-cta grid--cell print:d-none sm:ml0 sm:mb12 sm:order-first sm:as-end">
+
+    <a href="https://stackoverflow.com/questions/ask" class="ws-nowrap s-btn s-btn__primary">
+        Ask Question
+    </a>
+
+                </div>
+            </div>
+            <div class="grid fw-wrap pb8 mb16 bb bc-black-2">
+                    <div class="grid--cell ws-nowrap mr16 mb8" title="2017-05-05 15:57:53Z">
+                        <span class="fc-light mr2">Asked</span>
+                        <time itemprop="dateCreated" datetime="2017-05-05T15:57:53">2 years, 6 months ago</time>
+                    </div>
+                        <div class="grid--cell ws-nowrap mr16 mb8">
+                            <span class="fc-light mr2">Active</span>
+                            <a href="https://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works?lastactivity" class="s-link s-link__inherit" title="2017-05-05 16:33:35Z">2 years, 6 months ago</a>
+                        </div>
+                    <div class="grid--cell ws-nowrap mb8" title="Viewed 476 times">
+                        <span class="fc-light mr2">Viewed</span>
+                        476 times
+                    </div>
+            </div>
+                    <div id="mainbar" role="main" aria-label="question and answers">
+
+                
+
+<div class="question" data-questionid="43809245" id="question">
+
+    <style>.everyoneloves__top-leaderboard:empty,.everyoneloves__mid-leaderboard:empty,.everyoneloves__bot-mid-leaderboard:empty{
+            margin-bottom:0;
+}
+</style>
+<div id="clc-tlb" class="everyonelovesstackoverflow everyoneloves__top-leaderboard" data-dfp-zone="true" style="display: none;" data-google-query-id="CN20-6mzjuYCFfvJ4wcdbWICwg" data-clc-ready="true"><div id="google_ads_iframe_/248424177/stackoverflow.com/lb/question-pages_0__container__" style="border: 0pt none; width: 728px; height: 90px;"></div></div>
+    <div class="post-layout">
+        <div class="votecell post-layout--left">
+            
+
+<div class="js-voting-container grid fd-column ai-stretch gs4 fc-black-200" data-post-id="43809245">
+        <button class="js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer" title="This question shows research effort; it is useful and clear" aria-pressed="false" aria-label="up vote" data-selected-classes="fc-theme-primary"><svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></button>
+        <div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" itemprop="upvoteCount" data-value="-1">-1</div>
+        <button class="js-vote-down-btn grid--cell s-btn s-btn__unset c-pointer" title="This question does not show any research effort; it is unclear or not useful" aria-pressed="false" aria-label="down vote" data-selected-classes="fc-theme-primary"><svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></button>
+
+        <button class="js-favorite-btn s-btn s-btn__unset c-pointer py4 js-gps-track" aria-pressed="false" aria-label="favorite" data-selected-classes="fc-yellow-600" data-gps-track="post.click({ item: 1, priv: 0, post_type: 1 })">
+            <svg aria-hidden="true" class="svg-icon iconStar" width="18" height="18" viewBox="0 0 18 18"><path d="M9 12.65l-5.29 3.63 1.82-6.15L.44 6.22l6.42-.17L9 0l2.14 6.05 6.42.17-5.1 3.9 1.83 6.16L9 12.65z"></path></svg>
+            <div class="js-favorite-count mt4 d-none" data-value=""></div>
+        </button>
+    
+
+
+</div>
+
+        </div>
+
+        
+
+
+<div class="postcell post-layout--right">
+    
+    <div class="post-text" itemprop="text">
+
+<p>In the official site of socket.io i have a code example, my doubt is,
+ the emit function will emit the event for all client or just for the 
+client who connected in the sever? The example code:</p>
+
+<p>Server (app.js):</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> app </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'express'</span><span class="pun">)();</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'http'</span><span class="pun">).</span><span class="typ">Server</span><span class="pun">(</span><span class="pln">app</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> io </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'socket.io'</span><span class="pun">)(</span><span class="pln">server</span><span class="pun">);</span><span class="pln">
+
+server</span><span class="pun">.</span><span class="pln">listen</span><span class="pun">(</span><span class="lit">80</span><span class="pun">);</span><span class="pln">
+
+app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'/'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  res</span><span class="pun">.</span><span class="pln">sendfile</span><span class="pun">(</span><span class="pln">__dirname </span><span class="pun">+</span><span class="pln"> </span><span class="str">'/index.html'</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">});</span><span class="pln">
+
+io</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'connection'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">socket</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  socket</span><span class="pun">.</span><span class="pln">emit</span><span class="pun">(</span><span class="str">'news'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> hello</span><span class="pun">:</span><span class="pln"> </span><span class="str">'world'</span><span class="pln"> </span><span class="pun">});</span><span class="pln">
+  socket</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'my other event'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>Client (index.html):</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="pun">&lt;</span><span class="pln">script src</span><span class="pun">=</span><span class="str">"/socket.io/socket.io.js"</span><span class="pun">&gt;&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span><span class="pln">
+</span><span class="pun">&lt;</span><span class="pln">script</span><span class="pun">&gt;</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> socket </span><span class="pun">=</span><span class="pln"> io</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">'http://localhost'</span><span class="pun">);</span><span class="pln">
+  socket</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'news'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span><span class="pln">
+    socket</span><span class="pun">.</span><span class="pln">emit</span><span class="pun">(</span><span class="str">'my other event'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> my</span><span class="pun">:</span><span class="pln"> </span><span class="str">'data'</span><span class="pln"> </span><span class="pun">});</span><span class="pln">
+  </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></code></pre>
+    </div>
+
+        <div class="post-taglist grid gs4 gsy fd-column">
+            <div class="grid ps-relative d-block">
+                <a href="https://stackoverflow.com/questions/tagged/javascript" class="post-tag js-gps-track" title="show questions tagged 'javascript'" rel="tag">javascript</a> <a href="https://stackoverflow.com/questions/tagged/node.js" class="post-tag js-gps-track" title="show questions tagged 'node.js'" rel="tag">node.js</a> <a href="https://stackoverflow.com/questions/tagged/express" class="post-tag js-gps-track" title="show questions tagged 'express'" rel="tag">express</a> <a href="https://stackoverflow.com/questions/tagged/websocket" class="post-tag js-gps-track" title="show questions tagged 'websocket'" rel="tag">websocket</a> <a href="https://stackoverflow.com/questions/tagged/socket.io" class="post-tag js-gps-track" title="show questions tagged 'socket.io'" rel="tag">socket.io</a> 
+            </div>
+        </div>
+
+    <div class="mb0 ">
+        <div class="mt16 grid gs8 gsy fw-wrap jc-end ai-start pt4">
+            <div class="grid--cell mr16" style="flex: 1 1 100px;">
+                <div class="post-menu"><a href="https://stackoverflow.com/q/43809245" itemprop="url" class="js-share-link js-gps-track" title="short permalink to this question" data-gps-track="post.click({ item: 2, priv: 0, post_type: 1 })" data-controller="se-share-sheet s-popover" data-se-share-sheet-title="Share a link to this question" data-se-share-sheet-subtitle="" data-se-share-sheet-post-type="question" data-se-share-sheet-social="facebook twitter devto" data-se-share-sheet-location="1" data-s-popover-placement="bottom-start" aria-controls="se-share-sheet-0" data-action=" s-popover#toggle se-share-sheet#preventNavigation s-popover:show-&gt;se-share-sheet#willShow s-popover:shown-&gt;se-share-sheet#didShow">share</a><div class="s-popover z-dropdown" style="width: unset; max-width: 28em; position: absolute; transform: translate3d(240px, 766px, 0px); top: 0px; left: 0px; will-change: transform;" id="se-share-sheet-0" x-placement="top-start"><div class="s-popover--arrow"></div><div><span class="js-title fw-bold">Share a link to this question</span> <span class="js-subtitle"></span></div><div class="my8"><input type="text" class="js-input s-input wmn3 sm:wmn-initial" readonly="readonly" value="https://stackoverflow.com/q/43809245"></div><div class="d-flex jc-space-between mbn4"><button class="js-copy-link-btn s-btn s-btn__link">Copy link</button><div class="js-social-container"></div></div></div><span class="lsep">|</span><a href="https://stackoverflow.com/posts/43809245/edit" class="suggest-edit-post js-gps-track" data-gps-track="post.click({ item: 6, priv: 0, post_type: 1 })" title="">improve this question</a></div>
+            </div>
+
+            <div class="post-signature owner grid--cell">
+<div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2017-05-05 15:57:53Z" class="relativetime">May 5 '17 at 15:57</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/7469508/pedro-henrique-silva"><div class="gravatar-wrapper-32"><img src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/4acb2be77e703eef15e2be8e78bbe21e.png" alt="" class="bar-sm" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <a href="https://stackoverflow.com/users/7469508/pedro-henrique-silva">Pedro Henrique Silva</a><span class="d-none" itemprop="name">Pedro Henrique Silva</span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">58</span><span title="1 silver badge" aria-hidden="true"><span class="badge2"></span><span class="badgecount">1</span></span><span class="v-visible-sr">1 silver badge</span><span title="7 bronze badges" aria-hidden="true"><span class="badge3"></span><span class="badgecount">7</span></span><span class="v-visible-sr">7 bronze badges</span>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+        <div class="js-post-notices post-layout--full">
+        </div>
+
+    <div class="post-layout--right">
+        <div id="comments-43809245" class="comments js-comments-container bt bc-black-2 mt12 " data-post-id="43809245" data-min-length="15">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+    <li id="comment-74657784" class="comment js-comment " data-comment-id="74657784">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score js-comment-edit-hide">
+                    <span title="number of 'useful comment' votes received" class="cool">1</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div class="comment-body js-comment-edit-hide">
+                
+                <span class="comment-copy">It's done per connection. Each connection to server essentially creates a socket object passed into the callback.</span>
+                
+                    –&nbsp;<a href="https://stackoverflow.com/users/1229023/raina77ow" title="81,850 reputation" class="comment-user">raina77ow</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment74657784_43809245"><span title="2017-05-05 16:04:28Z" class="relativetime-clean">May 5 '17 at 16:04</span></a></span>
+                        <span title="this comment was edited 1 time">
+                            <svg aria-hidden="true" class="svg-icon va-text-bottom o50 iconPencilSm" width="14" height="14" viewBox="0 0 14 14"><path d="M11.1 1.71l1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0zM2 10.12l6.37-6.43 1.88 1.88L3.88 12H2v-1.88z"></path></svg>
+                        </span>
+                                                            </div>
+        </div>
+    </li>
+    <li id="comment-74674687" class="comment js-comment " data-comment-id="74674687">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score js-comment-edit-hide">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div class="comment-body js-comment-edit-hide">
+                
+                <span class="comment-copy">You can refer this answer for all different responses, <a href="http://stackoverflow.com/questions/10058226/send-response-to-all-clients-except-sender-socket-io#answer-10099325">Check out</a></span>
+                
+                    –&nbsp;<a href="https://stackoverflow.com/users/7768569/mehul-prajapati" title="827 reputation" class="comment-user">Mehul Prajapati</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment74674687_43809245"><span title="2017-05-06 07:44:27Z" class="relativetime-clean">May 6 '17 at 7:44</span></a></span>
+                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-43809245" data-rep="50" data-anon="true">
+
+                    <a class="js-add-link comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a>
+                <span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </div>            </div>
+</div>
+
+
+<div id="dfp-isb" class="everyonelovesstackoverflow everyoneloves__inline-sidebar"></div>
+                <div id="answers">
+
+                    <a name="tab-top"></a>
+                    <div id="answers-header">
+                        <div class="subheader answers-subheader">
+                            <h2 data-answercount="1">
+                                    1 Answer
+                                <span style="display:none;" itemprop="answerCount">1</span>
+                            </h2>
+                            <div>
+                                
+<div id="tabs">
+        <a href="https://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="https://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere is-selected " href="https://stackoverflow.com/questions/43809245/how-the-emit-function-of-socket-io-works?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+    </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+  
+<a name="43809850"></a>
+<div id="answer-43809850" class="answer accepted-answer" data-answerid="43809850" itemprop="acceptedAnswer" itemscope="" itemtype="http://schema.org/Answer">
+    <div class="post-layout">
+        <div class="votecell post-layout--left">
+            
+
+<div class="js-voting-container grid fd-column ai-stretch gs4 fc-black-200" data-post-id="43809850">
+        <button class="js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer" title="This answer is useful" aria-pressed="false" aria-label="up vote" data-selected-classes="fc-theme-primary"><svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></button>
+        <div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" itemprop="upvoteCount" data-value="3">3</div>
+        <button class="js-vote-down-btn grid--cell s-btn s-btn__unset c-pointer" title="This answer is not useful" aria-pressed="false" aria-label="down vote" data-selected-classes="fc-theme-primary"><svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></button>
+
+    
+            <div class="js-accepted-answer-indicator grid--cell fc-green-500 ta-center py4" title="loading when this answer was accepted..." tabindex="0" role="note" aria-label="accepted">
+                <svg aria-hidden="true" class="svg-icon iconCheckmarkLg" width="36" height="36" viewBox="0 0 36 36"><path d="M6 14l8 8L30 6v8L14 30l-8-8v-8z"></path></svg>
+            </div>
+
+
+</div>
+
+        </div>
+
+        
+
+
+<div class="answercell post-layout--right">
+        
+    <div class="post-text" itemprop="text">
+<blockquote>
+  <p>the emit function will emit the event for all client or just for the client who connected in the sever?</p>
+</blockquote>
+
+<p>In your code example on the server:</p>
+
+<p><code>socket.emit(...)</code> will send a message only to that particular connection.</p>
+
+<p><code>io.emit(...)</code> will send a message to all currently connected clients.</p>
+
+<p>Keep in mind that <code>io.emit()</code> doesn't have any magical powers, it just loops through all the current connected clients and calls <code>socket.emit()</code> for each one individually using their particular <code>socket</code> object - saving you the work of having to write that code yourself.</p>
+
+<p>From the client, <code>socket.emit()</code> will send a message to the server.</p>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+        <time itemprop="dateCreated" datetime="2017-05-05T16:33:35"></time>
+        <div class="grid--cell mr16" style="flex: 1 1 100px;">
+            <div class="post-menu"><a href="https://stackoverflow.com/a/43809850" itemprop="url" class="js-share-link js-gps-track" title="short permalink to this answer" data-gps-track="post.click({ item: 2, priv: 0, post_type: 2 })" data-controller="se-share-sheet s-popover" data-se-share-sheet-title="Share a link to this answer" data-se-share-sheet-subtitle="" data-se-share-sheet-post-type="answer" data-se-share-sheet-social="facebook twitter devto" data-se-share-sheet-location="2" data-s-popover-placement="bottom-start" aria-controls="se-share-sheet-1" data-action=" s-popover#toggle se-share-sheet#preventNavigation s-popover:show-&gt;se-share-sheet#willShow s-popover:shown-&gt;se-share-sheet#didShow">share</a><div class="s-popover z-dropdown" style="width: unset; max-width: 28em; position: absolute; transform: translate3d(240px, 1299px, 0px); top: 0px; left: 0px; will-change: transform;" id="se-share-sheet-1" x-placement="top-start"><div class="s-popover--arrow"></div><div><span class="js-title fw-bold">Share a link to this answer</span> <span class="js-subtitle"></span></div><div class="my8"><input type="text" class="js-input s-input wmn3 sm:wmn-initial" readonly="readonly" value="https://stackoverflow.com/a/43809850"></div><div class="d-flex jc-space-between mbn4"><button class="js-copy-link-btn s-btn s-btn__link">Copy link</button><div class="js-social-container"></div></div></div><span class="lsep">|</span><a href="https://stackoverflow.com/posts/43809850/edit" class="suggest-edit-post js-gps-track" data-gps-track="post.click({ item: 6, priv: 0, post_type: 2 })" title="">improve this answer</a></div>
+        </div>
+
+
+
+    <div class="post-signature grid--cell fl0">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2017-05-05 16:33:35Z" class="relativetime">May 5 '17 at 16:33</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/816620/jfriend00"><div class="gravatar-wrapper-32"><img src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/Xu7hp.jpg" alt="" class="bar-sm" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <a href="https://stackoverflow.com/users/816620/jfriend00">jfriend00</a><span class="d-none" itemprop="name">jfriend00</span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 481,736" dir="ltr">482k</span><span title="61 gold badges" aria-hidden="true"><span class="badge1"></span><span class="badgecount">61</span></span><span class="v-visible-sr">61 gold badges</span><span title="635 silver badges" aria-hidden="true"><span class="badge2"></span><span class="badgecount">635</span></span><span class="v-visible-sr">635 silver badges</span><span title="676 bronze badges" aria-hidden="true"><span class="badge3"></span><span class="badgecount">676</span></span><span class="v-visible-sr">676 bronze badges</span>
+        </div>
+    </div>
+</div>
+
+    </div>
+    </div>
+    
+</div>
+        <div class="js-post-notices post-layout--full">
+        </div>
+
+    <div class="post-layout--right">
+        <div id="comments-43809850" class="comments js-comments-container bt bc-black-2 mt12 " data-post-id="43809850" data-min-length="15">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+    <li id="comment-74659973" class="comment js-comment " data-comment-id="74659973">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score js-comment-edit-hide">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div class="comment-body js-comment-edit-hide">
+                
+                <span class="comment-copy">Thank you very much man, it's clearer to me now!</span>
+                
+                    –&nbsp;<a href="https://stackoverflow.com/users/7469508/pedro-henrique-silva" title="58 reputation" class="comment-user owner">Pedro Henrique Silva</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment74659973_43809850"><span title="2017-05-05 17:09:22Z" class="relativetime-clean">May 5 '17 at 17:09</span></a></span>
+                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-43809850" data-rep="50" data-anon="true">
+
+                    <a class="js-add-link comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a>
+                <span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </div>    </div>
+</div>
+
+                        <a name="new-answer"></a>
+                            <form id="post-form" action="/questions/43809245/answer/submit" method="post" class="js-add-answer-component post-form">
+                                <input type="hidden" id="post-id" value="43809245">
+                                <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                                <input type="hidden" name="referrer" value="https://www.google.com/">
+                                <h2 class="space">
+                                    Your Answer
+                                </h2>
+
+
+
+    <script>
+        StackExchange.ifUsing("editor", function () {
+            StackExchange.using("externalEditor", function () {
+                StackExchange.using("snippets", function () {
+                    StackExchange.snippets.init();
+                });
+            });
+        }, "code-snippets");
+    </script>
+
+
+<script>
+    StackExchange.ready(function() {
+        var channelOptions = {
+            tags: "".split(" "),
+            id: "1"
+        };
+        initTagRenderer("".split(" "), "".split(" "), channelOptions);
+       
+        StackExchange.using("externalEditor", function() {
+            // Have to fire editor after snippets, if snippets enabled
+            if (StackExchange.settings.snippets.snippetsEnabled) {
+                StackExchange.using("snippets", function() {
+                    createEditor();
+                });
+            }
+            else {
+                createEditor();
+            }
+        });
+
+        function createEditor() {
+            StackExchange.prepareEditor({
+                heartbeatType: 'answer',
+                autoActivateHeartbeat: false,
+                convertImagesToLinks: true,
+                noModals: true,
+                showLowRepImageUploadWarning: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                imageUploader: {
+                brandingHtml: "Powered by \u003ca class=\"icon-imgur-white\" href=\"https://imgur.com/\"\u003e\u003c/a\u003e",
+                    contentPolicyHtml: "User contributions licensed under \u003ca href=\"https://creativecommons.org/licenses/by-sa/4.0/\"\u003ecc by-sa 4.0 with attribution required\u003c/a\u003e \u003ca href=\"https://stackoverflow.com/legal/content-policy\"\u003e(content policy)\u003c/a\u003e",
+                    allowUrls: true
+                },
+                onDemand: true,
+                discardSelector: ".discard-answer"
+                ,immediatelyShowMarkdownHelp:true
+            });
+            
+
+        }
+    });
+</script>
+<div id="post-editor" class="post-editor js-post-editor js-wz-element" data-wz-state="8,16,32,64,128,256">
+
+    <div class="ps-relative">
+        
+        <div class="wmd-container mb8">
+            <div id="wmd-button-bar" class="wmd-button-bar btr-sm"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li><li class="wmd-spacer wmd-spacer-max"></li></ul></div>
+                        <div class="js-stacks-validation">
+                <div class="ps-relative">
+                    <textarea id="wmd-input" name="post-text" class="wmd-input js-wz-element s-input bar0 js-post-body-field" data-post-type-id="2" cols="92" rows="15" tabindex="101" data-wz-state="256" data-min-length=""></textarea>
+                </div>
+                <div class="s-input-message mt4 d-none js-stacks-validation-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <aside class="grid ai-start jc-space-between js-answer-help s-notice s-notice__warning pb0 pr4 pt4 mb8 d-none" role="status" aria-hidden="true">
+    <div class="grid--cell pt8">
+        <p>Thanks for contributing an answer to Stack Overflow!</p><ul><li>Please be sure to <em>answer the question</em>. Provide details and share your research!</li></ul><p>But <em>avoid</em> …</p><ul><li>Asking for help, clarification, or responding to other answers.</li><li>Making statements based on opinion; back them up with references or personal experience.</li></ul><p>To learn more, see our <a href="https://stackoverflow.com/help/how-to-answer">tips on writing great answers</a>.</p>
+    </div>
+    <button class="grid--cell js-answer-help-close-btn s-btn s-btn__muted fc-dark">
+        <svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewBox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9 15 4.41z"></path></svg>
+    </button>
+</aside>
+
+
+    <div id="draft-saved" class="draft-saved community-option fl" style="height:24px; display:none;">draft saved</div>
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="height:24px; display:none;">draft discarded</div>
+
+
+
+        <div id="wmd-preview" class="wmd-preview"></div>
+        <div></div>
+            <div class="edit-block">
+            <input id="fkey" name="fkey" type="hidden" value="6f573de0ae6ff6c91147264789551f573b35dbca3e3c1183e804b83e1c9df04a">
+            <input id="author" name="author" type="text">
+        </div>
+
+</div>
+
+                                <div class="ps-relative">
+                                    
+                                                <div class="form-item new-post-login p0 my16">
+                <div class="grid gs16 md:fd-column new-login-form">
+                    <div class="grid fd-column w50 md:w-auto gsy gs8 jc-space-between new-login-left">
+                        <h3 class="grid--cell fs-title">Sign up or <a id="login-link" href="https://stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f43809245%2fhow-the-emit-function-of-socket-io-works%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="grid--cell s-btn s-btn__muted s-btn__outlined s-btn__icon google-login" data-ga="[&quot;sign up&quot;,&quot;Sign Up Started - Google&quot;,&quot;New Post&quot;,null,null]">
+                            <svg aria-hidden="true" class="svg-icon native iconGoogle" width="18" height="18" viewBox="0 0 18 18"><path d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z" fill="#4285F4"></path><path d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z" fill="#34A853"></path><path d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z" fill="#FBBC05"></path><path d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z" fill="#EA4335"></path></svg> Sign up using Google
+                        </div>
+                        <div class="grid--cell s-btn s-btn__muted s-btn__icon facebook-login" data-ga="[&quot;sign up&quot;,&quot;Sign Up Started - Facebook&quot;,&quot;New Post&quot;,null,null]">
+                            <svg aria-hidden="true" class="svg-icon iconFacebook" width="18" height="18" viewBox="0 0 18 18"><path d="M3 1a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H3zm6.55 16v-6.2H7.46V8.4h2.09V6.61c0-2.07 1.26-3.2 3.1-3.2.88 0 1.64.07 1.87.1v2.16h-1.29c-1 0-1.19.48-1.19 1.18V8.4h2.39l-.31 2.42h-2.08V17h-2.5z" fill="#4167B2"></path></svg> Sign up using Facebook
+                        </div>
+                        <div class="grid--cell s-btn s-btn__muted s-btn__outlined s-btn__icon stackexchange-login" data-ga="[&quot;sign up&quot;,&quot;Sign Up Navigation&quot;,&quot;New Post&quot;,null,null]">
+                            <svg aria-hidden="true" class="svg-icon native iconLogoGlyphXSm" width="18" height="18" viewBox="0 0 18 18"><path d="M14 16v-5h2v7H2v-7h2v5h10z" fill="#BCBBBB"></path><path d="M12.09.72l-1.21.9 4.5 6.07 1.22-.9L12.09.71zM5 15h8v-2H5v2zm9.15-5.87L8.35 4.3l.96-1.16 5.8 4.83-.96 1.16zm-7.7-1.47l6.85 3.19.63-1.37-6.85-3.2-.63 1.38zm6.53 5L5.4 11.39l.38-1.67 7.42 1.48-.22 1.46z" fill="#F48024"></path></svg> Sign up using Email and Password
+                        </div>
+                    </div>
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="hidden" name="use-google" class="use-google" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="grid gsy gs8 fd-column w50 md:w-auto new-login-right form-item p0">
+                                <h3 class="grid--cell fs-title">Post as a guest</h3>
+            <div class="grid--cell">
+                <div class="grid gs4 gsy fd-column">
+                    <label class="s-label" for="display-name">Name</label>
+                    <div class="grid ps-relative">
+                        <input class="s-input" id="display-name" name="display-name" maxlength="30" type="text" tabindex="105" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="grid--cell">
+                <div class="grid gs4 gsy fd-column">
+                    <div class="grid--cell">
+                        <div class="grid gs2 gsy fd-column">
+                            <label class="grid--cell s-label" for="m-address">Email</label>
+                            <p class="grid--cell s-description">Required, but never shown</p>
+                        </div>
+                    </div>
+                    <div class="grid ps-relative">
+                        <input class="s-input js-post-email-field" id="m-address" name="m-address" type="text" size="40" tabindex="106" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'https%3a%2f%2fstackoverflow.com%2fquestions%2f43809245%2fhow-the-emit-function-of-socket-io-works%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3 class="grid--cell fs-title">Post as a guest</h3>
+            <div class="grid--cell">
+                <div class="grid gs4 gsy fd-column">
+                    <label class="s-label" for="display-name">Name</label>
+                    <div class="grid ps-relative">
+                        <input class="s-input" id="display-name" name="display-name" maxlength="30" type="text" value="" tabindex="105" placeholder="" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid--cell">
+                <div class="grid gs4 gsy fd-column">
+                    <div class="grid--cell">
+                        <div class="grid gs2 gsy fd-column">
+                            <label class="grid--cell s-label" for="m-address">Email</label>
+                            <p class="grid--cell s-description">Required, but never shown</p>
+                        </div>
+                    </div>
+                    <div class="grid ps-relative">
+                        <input class="s-input js-post-email-field" id="m-address" name="m-address" type="text" value="" size="40" tabindex="106" placeholder="" />
+                    </div>
+                </div>
+            </div>
+
+            </noscript>
+
+                                </div>
+
+                                                                    <div class="form-submit cbt grid gsx gs4">
+                                        <button id="submit-button" class="grid--cell s-btn s-btn__primary s-btn__icon" type="submit" tabindex="120" autocomplete="off">
+Post Your Answer                                        </button>
+                                        <button class="grid--cell s-btn s-btn__danger discard-answer dno">
+                                            Discard
+                                        </button>
+                                            <p class="privacy-policy-agreement">
+                                                By clicking “Post Your Answer”, you agree to our <a href="https://stackoverflow.com/legal/terms-of-service/public" name="tos" target="_blank" class="-link">terms of service</a>, <a href="https://stackoverflow.com/legal/privacy-policy" name="privacy" target="_blank" class="-link">privacy policy</a> and <a href="https://stackoverflow.com/legal/cookie-policy" name="cookie" target="_blank" class="-link">cookie policy</a><input type="hidden" name="legalLinksShown" value="1">
+                                            </p>
+                                    </div>
+                                    <div class="js-general-error general-error cbt d-none"></div>
+                            </form>
+
+
+
+                            <h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?                                Browse other questions tagged <a href="https://stackoverflow.com/questions/tagged/javascript" class="post-tag" title="show questions tagged 'javascript'" rel="tag">javascript</a> <a href="https://stackoverflow.com/questions/tagged/node.js" class="post-tag" title="show questions tagged 'node.js'" rel="tag">node.js</a> <a href="https://stackoverflow.com/questions/tagged/express" class="post-tag" title="show questions tagged 'express'" rel="tag">express</a> <a href="https://stackoverflow.com/questions/tagged/websocket" class="post-tag" title="show questions tagged 'websocket'" rel="tag">websocket</a> <a href="https://stackoverflow.com/questions/tagged/socket.io" class="post-tag" title="show questions tagged 'socket.io'" rel="tag">socket.io</a>  or <a href="https://stackoverflow.com/questions/ask">ask your own question</a>.                            </h2>
+                </div>
+            </div>
+                            <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+                <div class="s-sidebarwidget s-sidebarwidget__yellow s-anchors s-anchors__default mb16" data-tracker="cb=1">
+                <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
+                    Blog
+                </div>
+            <ul class="s-sidebarwidget--content s-sidebarwidget__items pt0 pr16 pb0 pl16">
+    <li class="s-sidebarwidget--item grid">
+        <div class="grid--cell1 fl-shrink0">
+                <a href="https://stackoverflow.blog/2019/11/25/podcast-tfw-you-accidentally-delete-your-database/?cb=1" data-ga="[&quot;community bulletin board&quot;,&quot;Blog&quot;,&quot;https://stackoverflow.blog/2019/11/25/podcast-tfw-you-accidentally-delete-your-database/&quot;,null,null]">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+        </div>
+        <div class="grid--cell">
+            <a href="https://stackoverflow.blog/2019/11/25/podcast-tfw-you-accidentally-delete-your-database/?cb=1" class="js-gps-track" data-ga="[&quot;community bulletin board&quot;,&quot;Blog&quot;,&quot;https://stackoverflow.blog/2019/11/25/podcast-tfw-you-accidentally-delete-your-database/&quot;,null,null]" data-gps-track="communitybulletin.click({ priority: 1, position: 0 })">Podcast: TFW You Accidentally Delete Your  Database</a>
+        </div>
+    </li>
+            </ul>
+            <ul class="s-sidebarwidget--content s-sidebarwidget__items pt0 pr16 pb0 pl16">
+    <li class="s-sidebarwidget--item grid">
+        <div class="grid--cell1 fl-shrink0">
+                <a href="https://stackoverflow.blog/2019/11/26/copying-code-from-stack-overflow-you-might-be-spreading-security-vulnerabilities/?cb=1" data-ga="[&quot;community bulletin board&quot;,&quot;Blog&quot;,&quot;https://stackoverflow.blog/2019/11/26/copying-code-from-stack-overflow-you-might-be-spreading-security-vulnerabilities/&quot;,null,null]">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+        </div>
+        <div class="grid--cell">
+            <a href="https://stackoverflow.blog/2019/11/26/copying-code-from-stack-overflow-you-might-be-spreading-security-vulnerabilities/?cb=1" class="js-gps-track" data-ga="[&quot;community bulletin board&quot;,&quot;Blog&quot;,&quot;https://stackoverflow.blog/2019/11/26/copying-code-from-stack-overflow-you-might-be-spreading-security-vulnerabilities/&quot;,null,null]" data-gps-track="communitybulletin.click({ priority: 1, position: 1 })">Copying code from Stack Overflow? You might paste security vulnerabilities, too</a>
+        </div>
+    </li>
+            </ul>
+                <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
+                    Featured on Meta
+                </div>
+            <ul class="s-sidebarwidget--content s-sidebarwidget__items pt0 pr16 pb0 pl16">
+    <li class="s-sidebarwidget--item grid">
+        <div class="grid--cell1 fl-shrink0">
+                <a href="https://meta.stackexchange.com/questions/336177/feedback-post-moderator-review-and-reinstatement-processes?cb=1" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackexchange.com/questions/336177/feedback-post-moderator-review-and-reinstatement-processes&quot;,null,null]">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+        </div>
+        <div class="grid--cell">
+            <a href="https://meta.stackexchange.com/questions/336177/feedback-post-moderator-review-and-reinstatement-processes?cb=1" class="js-gps-track" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackexchange.com/questions/336177/feedback-post-moderator-review-and-reinstatement-processes&quot;,null,null]" data-gps-track="communitybulletin.click({ priority: 3, position: 2 })">Feedback post: Moderator review and reinstatement processes</a>
+        </div>
+    </li>
+            </ul>
+            <ul class="s-sidebarwidget--content s-sidebarwidget__items pt0 pr16 pb0 pl16">
+    <li class="s-sidebarwidget--item grid">
+        <div class="grid--cell1 fl-shrink0">
+                <a href="https://meta.stackoverflow.com/questions/390887/new-post-notices-closed-on-hold-etc-rolling-out-on-stack-overflow?cb=1" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackoverflow.com/questions/390887/new-post-notices-closed-on-hold-etc-rolling-out-on-stack-overflow&quot;,null,null]">
+<div class="favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>                </a>
+        </div>
+        <div class="grid--cell">
+            <a href="https://meta.stackoverflow.com/questions/390887/new-post-notices-closed-on-hold-etc-rolling-out-on-stack-overflow?cb=1" class="js-gps-track" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackoverflow.com/questions/390887/new-post-notices-closed-on-hold-etc-rolling-out-on-stack-overflow&quot;,null,null]" data-gps-track="communitybulletin.click({ priority: 6, position: 3 })">New Post Notices (Closed/On Hold/etc.) rolling out on Stack Overflow</a>
+        </div>
+    </li>
+            </ul>
+            <ul class="s-sidebarwidget--content s-sidebarwidget__items pt0 pr16 pb0 pl16">
+    <li class="s-sidebarwidget--item grid">
+        <div class="grid--cell1 fl-shrink0">
+                <a href="https://meta.stackoverflow.com/questions/391250/upvotes-on-questions-will-now-be-worth-the-same-as-upvotes-on-answers?cb=1" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackoverflow.com/questions/391250/upvotes-on-questions-will-now-be-worth-the-same-as-upvotes-on-answers&quot;,null,null]">
+<div class="favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>                </a>
+        </div>
+        <div class="grid--cell">
+            <a href="https://meta.stackoverflow.com/questions/391250/upvotes-on-questions-will-now-be-worth-the-same-as-upvotes-on-answers?cb=1" class="js-gps-track" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackoverflow.com/questions/391250/upvotes-on-questions-will-now-be-worth-the-same-as-upvotes-on-answers&quot;,null,null]" data-gps-track="communitybulletin.click({ priority: 6, position: 4 })">Upvotes on questions will now be worth the same as upvotes on answers</a>
+        </div>
+    </li>
+            </ul>
+
+</div>
+<div id="clc-tsb" class="everyonelovesstackoverflow everyoneloves__top-sidebar tex2jax_ignore clc-cp-container"><div class="clc-cp-sb--short _jobs has-image"><div class="-wrapper clc-g-column"><div class="clc-g-col clc-g-column -header"><a href="https://stackoverflow.com/jobs/companies/grubhub-seamless?so_medium=Ad&amp;so_source=CompanyPageAd&amp;so_campaign=StandardCompanyPageAd" data-clc-click="https://clc.stackoverflow.com/click?an=ATwAw_8KX97AeXV010gFXmtDRQICCN3z8RQ7A-pxzOgNlNkWABQADYzkv4E59iNxPwEDqtUOAKgVdDJOCL_p9e8&amp;cr=371860&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2Fcompanies%2Fgrubhub-seamless%3Fso_medium%3DAd%26so_source%3DCompanyPageAd%26so_campaign%3DStandardCompanyPageAd%26med%3Dclc%26clc-var%3D20&amp;sig=4_XG3sgUVU1Zag" class="clc-cp-link" target="_blank"></a><div class="-bg-image" style="background-image: url(https://i.stack.imgur.com/2tpA6m.jpg)"></div><div class="clc-g-col clc-g-center fl-none -logo"><img src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/xOXrt.png" alt="GrubHub Seamless"></div><div class="clc-g-col clc-g-column -company-info"><h2 class="clc-g-col fl-none -company">GrubHub Seamless</h2><span class="clc-g-col fl-none -meta-info _muted">Computer Software</span></div></div><div class="clc-g-column -content"><ul class="clc-g-col clc-g-column -list"><li class="-item"><a class="-link" target="_blank" href="https://stackoverflow.com/jobs/240298/senior-front-end-engineer-delivery-grubhub-seamless?so_medium=Ad&amp;so_source=CompanyPageAd&amp;so_campaign=StandardCompanyPageAd" data-clc-click="https://clc.stackoverflow.com/click?an=ATwAw_8KX97AeXV010gFXmtDRQICCN3z8RQ7A-pxzOgNlNkWABQADYzkv4E59iNxPwEDqtUOAKgVdDJOCL_p9e8&amp;cr=371860&amp;ct=3&amp;ctid=240298&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F240298%2Fsenior-front-end-engineer-delivery-grubhub-seamless%3Fso_medium%3DAd%26so_source%3DCompanyPageAd%26so_campaign%3DStandardCompanyPageAd%26med%3Dclc%26clc-var%3D20&amp;sig=jcAKh2haM66v_w"> <div class="-title"><strong>Senior Front-End Engineer- Delivery</strong></div><div class="-job-items"><span class="-info">Chicago, IL</span><span class="-info _relocation"><svg viewBox="0 0 12 12"><path d="M9.8 4.1H8.4V2.2H1.7a1 1 0 0 0-1 1v5.3h1c0 .8.6 1.4 1.4 1.4s1.4-.6 1.4-1.4h2.9c0 .8.6 1.4 1.4 1.4s1.4-.6 1.4-1.4h1V6L9.8 4.1zm-6.7 5c-.4 0-.7-.3-.7-.7 0-.4.3-.7.7-.7s.7.3.7.7c0 .4-.3.7-.7.7zm6.5-4.3l.9 1.2H8.4V4.8h1.2zm-.7 4.3c-.4 0-.7-.3-.7-.7 0-.4.3-.7.7-.7s.7.3.7.7c0 .4-.3.7-.7.7z"></path></svg>Paid relocation</span></div><div class="g-row _gutters -tags"><span class="clc-g-col fl-none clc-cp-tag highlight">javascript</span><span class="clc-g-col fl-none clc-cp-tag">reactjs</span></div></a> </li></ul></div><div class="clc-g-col clc-g-row -footer"><a href="https://stackoverflow.com/jobs/companies/grubhub-seamless?so_medium=Ad&amp;so_source=CompanyPageAd&amp;so_campaign=StandardCompanyPageAd" data-clc-click="https://clc.stackoverflow.com/click?an=ATwAw_8KX97AeXV010gFXmtDRQICCN3z8RQ7A-pxzOgNlNkWABQADYzkv4E59iNxPwEDqtUOAKgVdDJOCL_p9e8&amp;cr=371860&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2Fcompanies%2Fgrubhub-seamless%3Fso_medium%3DAd%26so_source%3DCompanyPageAd%26so_campaign%3DStandardCompanyPageAd%26med%3Dclc%26clc-var%3D20&amp;sig=4_XG3sgUVU1Zag" class="clc-g-center clc-btn-secondary -learn-more" target="_blank">View all job openings!</a></div></div></div><img src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/impression.gif" class="impression" style="display: none;"></div><div id="hireme" class="tag-themed javascript tagged tex2jax_ignore clc-jobs-multi"><a class="top clearfix widen" href="https://stackoverflow.com/jobs/developer-jobs-using-javascript?so_medium=Ad&amp;so_source=JobAd&amp;so_campaign=Tag" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=49rlcLiytOS6h2pctrMrE5PA3c8fRdq_Wr8r6lQ1y2b86Hcn4EQggzpDzwYGhgZ7RkYGptlMC6cJbF8s9nyqPLc6Q8qBKu_bllWFVfaMXFmJZYnFyUWZBSWzmZ6dZ78_QeRdk6wISE0p6wHLnQtKUNQwsOy-FNlccbMn7R0A&amp;cr=10440&amp;ct=1&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2Fdeveloper-jobs-using-javascript%3Fso_medium%3DAd%26so_source%3DJobAd%26so_campaign%3DTag%26med%3Dclc%26clc-var%3D39&amp;sig=ZHtirbTqpRLSPg"><span class="float-left">Want a <span class="fw-bold">javascript</span> job?</span><span class="header-icon-right float-right"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><title>Job Ad Illustrations</title><path d="M26.18,9.05,17,3.74a1.82,1.82,0,0,0-1.78,0L6,9.05a1.77,1.77,0,0,0-.89,1.53V21.21A1.76,1.76,0,0,0,6,22.74l3.44,2a.5.5,0,0,0,.51-.87l-3.45-2a.78.78,0,0,1-.38-.67V10.58a.75.75,0,0,1,.38-.66L15.69,4.6a.79.79,0,0,1,.76,0l9.23,5.32a.77.77,0,0,1,.38.66V21.21a.78.78,0,0,1-.38.67l-9.23,5.31a.74.74,0,0,1-.76,0l-3.2-1.84A4.09,4.09,0,0,0,13.12,23V12.42a.5.5,0,0,0-1,0V23a3,3,0,0,1-.53,1.92,1.88,1.88,0,0,1-.2.19l-.59.45,4.38,2.53a1.84,1.84,0,0,0,.89.23,1.87,1.87,0,0,0,.89-.23l9.22-5.32a1.76,1.76,0,0,0,.89-1.53V10.58A1.77,1.77,0,0,0,26.18,9.05Z"></path><path d="M20,20.42a2.46,2.46,0,0,1-.87.27,4.68,4.68,0,0,1-1,.06,4.46,4.46,0,0,1-1-.14,2.59,2.59,0,0,1-.79-.36,1.88,1.88,0,0,1-.53-.59,1.93,1.93,0,0,1-.25-.87.51.51,0,0,0-.54-.45.49.49,0,0,0-.46.53,2.82,2.82,0,0,0,1.21,2.2,3.57,3.57,0,0,0,1.1.5,4.78,4.78,0,0,0,1.21.18h.2a6.43,6.43,0,0,0,1-.08,3.62,3.62,0,0,0,1.18-.37,2.73,2.73,0,0,0,.94-.78,2.23,2.23,0,0,0,.44-1.3A2.59,2.59,0,0,0,21.62,18a2.26,2.26,0,0,0-.67-.83,3.13,3.13,0,0,0-.88-.49,6.7,6.7,0,0,0-.9-.29l-.6-.19L17.7,16a7.13,7.13,0,0,1-.82-.26,2.27,2.27,0,0,1-.63-.35,1.23,1.23,0,0,1-.37-.47,1.55,1.55,0,0,1-.12-.72,1.18,1.18,0,0,1,.23-.73,1.83,1.83,0,0,1,.6-.5,3,3,0,0,1,.87-.27,5.54,5.54,0,0,1,1-.06,4.55,4.55,0,0,1,1,.14,2.34,2.34,0,0,1,.78.37,1.77,1.77,0,0,1,.54.58,2.07,2.07,0,0,1,.25.87.5.5,0,0,0,1-.08,2.92,2.92,0,0,0-.39-1.29,2.79,2.79,0,0,0-.83-.91,3.62,3.62,0,0,0-1.09-.5,6,6,0,0,0-1.22-.18,6.57,6.57,0,0,0-1.15.07,3.71,3.71,0,0,0-1.18.37,2.68,2.68,0,0,0-1,.78,2.22,2.22,0,0,0-.43,1.3,2.53,2.53,0,0,0,.22,1.2,2.3,2.3,0,0,0,.66.82,3.59,3.59,0,0,0,.88.5,9.15,9.15,0,0,0,.93.29l.85.21.59.19a7.29,7.29,0,0,1,.83.26,2.49,2.49,0,0,1,.62.35,1.36,1.36,0,0,1,.38.47,1.57,1.57,0,0,1,.12.73,1.21,1.21,0,0,1-.23.72A1.66,1.66,0,0,1,20,20.42Z"></path><path d="M12.64,10.58a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5.51.51,0,0,0-.5.5v1A.5.5,0,0,0,12.64,10.58Z"></path></svg></span></a><div class="middle"><ul class="jobs pb6"><li class="clc-dismissable"><div class="job-wrap"><a class="job" title="Senior Full-Stack JavaScript Engineer (Node + React) at Scalable Path. Click to learn more." href="https://stackoverflow.com/jobs/304353/senior-full-stack-javascript-engineer-node-plus-scalable-path?so_medium=Ad&amp;so_source=JobAd&amp;so_campaign=Tag" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=49rlcLiytOS6h2pctrMrE5PA3c8fRdq_Wr8r6lQ1y2b86Hcn4EQggzpDzwYGhgZ7RkYGptlMC6cJbF8s9nyqPLc6Q8qBKu_bllWFVfaMXFmJZYnFyUWZBSWzmZ6dZ78_QeRdk6wISE0p6wHLnQtKUNQwsOy-FNlccbMn7R0A&amp;cr=510695&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F304353%2Fsenior-full-stack-javascript-engineer-node-plus-scalable-path%3Fso_medium%3DAd%26so_source%3DJobAd%26so_campaign%3DTag%26med%3Dclc%26clc-var%3D39&amp;sig=cznyW-sW2hyOyQ"><div class="title">Senior Full-Stack JavaScript Engineer (Node + React)</div><div><span class="company">Scalable Path</span><span class="location"><svg viewBox="0 0 12 12"><path d="M6 5.7c.4 0 .7-.1.9-.4.3-.3.4-.6.4-.9 0-.4-.1-.7-.4-.9-.2-.3-.5-.4-.9-.4s-.7.1-.9.4c-.3.2-.4.5-.4.9s.1.7.4.9c.2.3.5.4.9.4zm0-5c1 0 1.9.4 2.6 1.1.7.7 1.1 1.6 1.1 2.6 0 .5-.1 1.1-.4 1.8s-.5 1.3-.9 1.9c-.4.5-.7 1.1-1.1 1.6-.4.5-.7.9-.9 1.2l-.4.4c-.1-.1-.2-.3-.4-.5s-.5-.6-.9-1.2c-.4-.5-.8-1-1.1-1.6s-.7-1.1-.9-1.8c-.3-.7-.4-1.3-.4-1.8 0-1 .4-1.9 1.1-2.6S5 .7 6 .7z"></path></svg><span>No office location</span></span></div><div class="opts"><span class="opt salary"><span>$115k - $192k</span></span><span class="opt remote"><svg viewBox="0 0 12 12"><path d="M6 9.8L3.9 7.7c1.3-.9 3-.9 4.2 0L6 9.8zm3-3a4.81 4.81 0 0 0-6 0L2.2 6c2.2-1.8 5.5-1.8 7.7 0l-.9.8zm1.7-1.7a7.27 7.27 0 0 0-9.4 0l-.9-.8c3.2-2.8 7.9-2.8 11.1 0l-.8.8z"></path></svg><span>Remote</span></span></div><span class="s-tag ba bc-blue-3 mr2">javascript</span><span class="s-tag">reactjs</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=49rlcLiytOS6h2pctrMrE5PA3c8fRdq_Wr8r6lQ1y2b86Hcn4EQggzpDzwYGhgZ7RkYGptlMC6cJbF8s9nyqPLc6Q8qBKu_bllWFVfaMXFmJZYnFyUWZBSWzmZ6dZ78_QeRdk6wISE0p6wHLnQtKUNQwsOy-FNlccbMn7R0A&amp;cr=510695&amp;ct=-1&amp;sig=33pJoC7iA6HYCA" data-clc-meta-target="-1"><svg viewBox="0 0 13.6 13.6"><path d="M11.4 2.3C8.9-.2 4.8-.2 2.3 2.3s-2.5 6.6 0 9.1 6.6 2.5 9.1 0 2.5-6.6 0-9.1zM8.6 9.5L6.8 7.7 5 9.5l-.9-.9 1.8-1.8L4.1 5l.9-.9 1.8 1.8 1.8-1.8.9.9-1.8 1.8 1.8 1.8-.9.9z"></path></svg><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="clc-dismissable"><div class="job-wrap"><a class="job" title="Senior React Engineer - 100% Remote - North / South America &amp; Europe at Theorem. Click to learn more." href="https://stackoverflow.com/jobs/146458/senior-react-engineer-100-remote-north-theorem?so_medium=Ad&amp;so_source=JobAd&amp;so_campaign=Tag" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=49rlcLiytOS6h2pctrMrE5PA3c8fRdq_Wr8r6lQ1y2b86Hcn4EQggzpDzwYGhgZ7RkYGptlMC6cJbF8s9nyqPLc6Q8qBKu_bllWFVfaMXFmJZYnFyUWZBSWzmZ6dZ78_QeRdk6wISE0p6wHLnQtKUNQwsOy-FNlccbMn7R0A&amp;cr=475502&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F146458%2Fsenior-react-engineer-100-remote-north-theorem%3Fso_medium%3DAd%26so_source%3DJobAd%26so_campaign%3DTag%26med%3Dclc%26clc-var%3D39&amp;sig=rPQWXCfHBr5-bA"><div class="title">Senior React Engineer - 100% Remote - North / South America &amp; Europe</div><div><span class="company">Theorem</span><span class="location"><svg viewBox="0 0 12 12"><path d="M6 5.7c.4 0 .7-.1.9-.4.3-.3.4-.6.4-.9 0-.4-.1-.7-.4-.9-.2-.3-.5-.4-.9-.4s-.7.1-.9.4c-.3.2-.4.5-.4.9s.1.7.4.9c.2.3.5.4.9.4zm0-5c1 0 1.9.4 2.6 1.1.7.7 1.1 1.6 1.1 2.6 0 .5-.1 1.1-.4 1.8s-.5 1.3-.9 1.9c-.4.5-.7 1.1-1.1 1.6-.4.5-.7.9-.9 1.2l-.4.4c-.1-.1-.2-.3-.4-.5s-.5-.6-.9-1.2c-.4-.5-.8-1-1.1-1.6s-.7-1.1-.9-1.8c-.3-.7-.4-1.3-.4-1.8 0-1 .4-1.9 1.1-2.6S5 .7 6 .7z"></path></svg><span>No office location</span></span></div><div class="opts"><span class="opt remote"><svg viewBox="0 0 12 12"><path d="M6 9.8L3.9 7.7c1.3-.9 3-.9 4.2 0L6 9.8zm3-3a4.81 4.81 0 0 0-6 0L2.2 6c2.2-1.8 5.5-1.8 7.7 0l-.9.8zm1.7-1.7a7.27 7.27 0 0 0-9.4 0l-.9-.8c3.2-2.8 7.9-2.8 11.1 0l-.8.8z"></path></svg><span>Remote</span></span></div><span class="s-tag ba bc-blue-3 mr2">javascript</span><span class="s-tag">reactjs</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=49rlcLiytOS6h2pctrMrE5PA3c8fRdq_Wr8r6lQ1y2b86Hcn4EQggzpDzwYGhgZ7RkYGptlMC6cJbF8s9nyqPLc6Q8qBKu_bllWFVfaMXFmJZYnFyUWZBSWzmZ6dZ78_QeRdk6wISE0p6wHLnQtKUNQwsOy-FNlccbMn7R0A&amp;cr=475502&amp;ct=-1&amp;sig=DWNefe1qExaFZA" data-clc-meta-target="-1"><svg viewBox="0 0 13.6 13.6"><path d="M11.4 2.3C8.9-.2 4.8-.2 2.3 2.3s-2.5 6.6 0 9.1 6.6 2.5 9.1 0 2.5-6.6 0-9.1zM8.6 9.5L6.8 7.7 5 9.5l-.9-.9 1.8-1.8L4.1 5l.9-.9 1.8 1.8 1.8-1.8.9.9-1.8 1.8 1.8 1.8-.9.9z"></path></svg><span class="clc-tooltip above-left">dismiss this job</span></a></li></ul><a class="footer" href="https://stackoverflow.com/jobs/developer-jobs-using-javascript?so_medium=Ad&amp;so_source=JobAd&amp;so_campaign=Tag" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=49rlcLiytOS6h2pctrMrE5PA3c8fRdq_Wr8r6lQ1y2b86Hcn4EQggzpDzwYGhgZ7RkYGptlMC6cJbF8s9nyqPLc6Q8qBKu_bllWFVfaMXFmJZYnFyUWZBSWzmZ6dZ78_QeRdk6wISE0p6wHLnQtKUNQwsOy-FNlccbMn7R0A&amp;cr=10440&amp;ct=2&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2Fdeveloper-jobs-using-javascript%3Fso_medium%3DAd%26so_source%3DJobAd%26so_campaign%3DTag%26med%3Dclc%26clc-var%3D39&amp;sig=DCS6LpFI4Ae3KA"><div class="grid ai-baseline p12"><div class="grid--cell"><svg aria-hidden="true" class="svg-icon iconLogoGlyphSm" width="19" height="22" viewBox="0 0 19 22"><g><path fill="#C1BEBC" d="M16 20v-6h2v8H0v-8h2v6z"></path><path d="M4 18h10v-2H4v2zm8.72-18l-1.57 1.17L17 9.05l1.57-1.18L12.72 0zM7.86 4.64l7.54 6.28 1.25-1.5-7.54-6.29-1.25 1.51zM5.39 9.01l8.9 4.14.83-1.78-8.9-4.14L5.4 9zm-1.27 4.6l9.91 1.67.13-1.67-9.63-1.92-.4 1.92z" fill="#F48024"></path></g></svg></div><div class="grid--cell fl1 pl8">View more jobs on <b>Stack Overflow</b></div><div class="grid--cell"><svg aria-hidden="true" class="svg-icon arrow-ico iconArrowRightAlt" width="18" height="18" viewBox="0 0 18 18"><path d="M6.41 2L5 3.41 10.59 9 5 14.59 6.41 16l7-7z"></path></svg></div></div></a></div><img src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/impression_002.gif" class="impression" style="display: none;"></div>
+                <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer js-gps-track" data-gps-track="linkedquestion.click({ source_post_id: 43809245, target_question_id: 10058226, position: 0 })">
+	<a href="https://stackoverflow.com/q/10058226?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">213</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/10058226/send-response-to-all-clients-except-sender?noredirect=1&amp;lq=1" class="question-hyperlink">Send response to all clients except sender</a>
+</div>			</div>
+</div>
+
+                    <div class="module sidebar-related">
+                        <h4 id="h-related">Related</h4>
+                        <div class="related js-gps-related-questions" data-tracker="rq=1">
+                            <div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/31044?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">2668</div></a><a href="https://stackoverflow.com/questions/31044/is-there-an-exists-function-for-jquery?rq=1" class="question-hyperlink">Is there an “exists” function for jQuery?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/111102?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">7644</div></a><a href="https://stackoverflow.com/questions/111102/how-do-javascript-closures-work?rq=1" class="question-hyperlink">How do JavaScript closures work?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/178325?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">7479</div></a><a href="https://stackoverflow.com/questions/178325/how-do-i-check-if-an-element-is-hidden-in-jquery?rq=1" class="question-hyperlink">How do I check if an element is hidden in jQuery?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/208105?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">5812</div></a><a href="https://stackoverflow.com/questions/208105/how-do-i-remove-a-property-from-a-javascript-object?rq=1" class="question-hyperlink">How do I remove a property from a JavaScript object?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/336859?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">6644</div></a><a href="https://stackoverflow.com/questions/336859/var-functionname-function-vs-function-functionname?rq=1" class="question-hyperlink">var functionName = function() {} vs function functionName() {}</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/503093?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">7725</div></a><a href="https://stackoverflow.com/questions/503093/how-do-i-redirect-to-another-webpage?rq=1" class="question-hyperlink">How do I redirect to another webpage?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/950087?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">4903</div></a><a href="https://stackoverflow.com/questions/950087/how-do-i-include-a-javascript-file-in-another-javascript-file?rq=1" class="question-hyperlink">How do I include a JavaScript file in another JavaScript file?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/1789945?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">7430</div></a><a href="https://stackoverflow.com/questions/1789945/how-to-check-whether-a-string-contains-a-substring-in-javascript?rq=1" class="question-hyperlink">How to check whether a string contains a substring in JavaScript?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/5767325?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">7649</div></a><a href="https://stackoverflow.com/questions/5767325/how-do-i-remove-a-particular-element-from-an-array-in-javascript?rq=1" class="question-hyperlink">How do I remove a particular element from an array in JavaScript?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/14220321?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">5205</div></a><a href="https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call?rq=1" class="question-hyperlink">How do I return the response from an asynchronous call?</a></div>
+                        </div>
+                    </div>
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track s-link s-link__inherit" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="https://physics.stackexchange.com/questions/516609/how-much-time-does-it-take-for-a-complete-earth-revolution-around-the-sun" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How much time does it take for a complete Earth revolution around the Sun
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="https://ell.stackexchange.com/questions/231158/is-it-possible-to-pull-or-pull-out-a-machine-gun-if-its-already-in-your-hand" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it possible to pull or pull out a machine gun if it's already in your hand?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-cooking" title="Seasoned Advice"></div><a href="https://cooking.stackexchange.com/questions/103762/what-milk-and-yoghurt-is-the-best-for-mango-lassi" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What milk and yoghurt is the best for mango lassi?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-christianity" title="Christianity Stack Exchange"></div><a href="https://christianity.stackexchange.com/questions/74332/is-there-an-appropriate-response-to-jesus-loves-you" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:304 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there an appropriate response to "Jesus Loves You"?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-music" title="Music: Practice &amp; Theory Stack Exchange"></div><a href="https://music.stackexchange.com/questions/92411/exactly-what-does-diatonic-mean" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Exactly what does "diatonic" mean?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="https://gaming.stackexchange.com/questions/360740/is-it-possible-to-trap-yourself-in-the-nether" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it possible to trap yourself in the Nether?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="https://stackoverflow.com/questions/59081890/is-it-possible-to-write-quakes-fast-invsqrt-function-in-rust" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it possible to write Quake's fast InvSqrt() function in Rust?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/223676/a-story-in-which-god-the-christian-god-is-replaced" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A story in which God (the Christian god) is replaced
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="https://philosophy.stackexchange.com/questions/68722/is-economics-a-science" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is economics a science?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-quant" title="Quantitative Finance Stack Exchange"></div><a href="https://quant.stackexchange.com/questions/49990/intuitive-explanation-for-the-smile-in-fx" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:204 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Intuitive explanation for the smile in FX
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/3454610/can-a-transcendent-matrix-have-an-algebraic-spectrum" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a transcendent matrix have an algebraic spectrum?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="https://travel.stackexchange.com/questions/150263/applying-for-another-country-passport" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    applying for another country passport
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-engineering" title="Engineering Stack Exchange"></div><a href="https://engineering.stackexchange.com/questions/32111/boring-through-joist" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:595 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Boring through joist
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/223729/does-star-trek-provide-an-answer-for-the-size-and-shape-of-the-universe" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does Star Trek provide an answer for the size and shape of the universe?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="https://academia.stackexchange.com/questions/140698/is-it-true-that-almost-everyone-who-starts-a-phd-and-sticks-around-long-enough-c" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it true that almost everyone who starts a PhD and sticks around long enough can get one?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-diy" title="Home Improvement Stack Exchange"></div><a href="https://diy.stackexchange.com/questions/179229/are-these-pigtails-inside-the-panel-and-outside-a-junction-box-allowed" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:73 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are these pigtails inside the panel and outside a junction box allowed?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="display: list-item;">
+                <div class="favicon favicon-sitecore" title="Sitecore Stack Exchange"></div><a href="https://sitecore.stackexchange.com/questions/23209/running-horizon-failed-http-error-502-5-process-failure" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:664 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Running Horizon Failed - HTTP Error 502.5 - Process Failure
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="https://codereview.stackexchange.com/questions/233124/a-type-of-game-simulation-dropping-disks" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    a type of game simulation dropping disks
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="">
+                <div class="favicon favicon-codegolf" title="Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/196447/a-stack-exchange-answerer" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A Stack Exchange Answerer
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="https://serverfault.com/questions/993443/whats-the-name-of-this-windows-feature" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the name of this windows feature?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="https://aviation.stackexchange.com/questions/72084/is-there-any-obvious-warning-when-auto-pilot-is-disengaged-or-when-the-mode-chan" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there any obvious warning when auto-pilot is disengaged or when the mode changes?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="https://askubuntu.com/questions/1191862/what-is-the-difference-between-more-and-less-commands" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the difference between "more" and "less" commands?
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/162282/traveling-in-a-world-with-ever-changing-landscapes" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Traveling in a world with ever-changing landscapes
+                </a>
+
+            </li>
+            <li class="js-hidden dno" style="">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/518405/multiple-pdf-outputs-from-one-single-tex-file" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Multiple pdf outputs from one single .tex file
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+
+    <div id="feed-link" class="js-feed-link">
+        <a href="https://stackoverflow.com/feeds/question/43809245" title="Feed of this question and its answers">
+            <svg aria-hidden="true" class="svg-icon fc-orange-400 iconRss" width="18" height="18" viewBox="0 0 18 18"><path d="M1 3c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3zm14.5 12C15.5 8.1 9.9 2.5 3 2.5V5a10 10 0 0 1 10 10h2.5zm-5 0A7.5 7.5 0 0 0 3 7.5V10a5 5 0 0 1 5 5h2.5zm-5 0A2.5 2.5 0 0 0 3 12.5V15h2.5z"></path></svg>
+            Question feed
+        </a>
+    </div>
+    <aside class="s-modal js-feed-link-modal" tabindex="-1" role="dialog" aria-labelledby="feed-modal-title" aria-describedby="feed-modal-description" aria-hidden="true">
+        <div class="s-modal--dialog js-modal-dialog wmx4" role="document" data-controller="se-draggable">
+            <h1 class="s-modal--header fw-bold js-first-tabbable c-move" id="feed-modal-title" data-target="se-draggable.handle" tabindex="0">
+                Subscribe to RSS
+            </h1>
+            <div class="grid gs4 gsy fd-column">
+                <div class="grid--cell">
+                    <label class="d-block s-label c-default" for="feed-url">
+                        Question feed
+                        <p class="s-description mt2" id="feed-modal-description">To subscribe to this RSS feed, copy and paste this URL into your RSS reader.</p>
+                    </label>
+                </div>
+                <div class="grid ps-relative">
+                    <input class="s-input" type="text" name="feed-url" id="feed-url" readonly="readonly" value="https://stackoverflow.com/feeds/question/43809245">
+                    <svg aria-hidden="true" class="svg-icon s-input-icon fc-orange-400 iconRss" width="18" height="18" viewBox="0 0 18 18"><path d="M1 3c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3zm14.5 12C15.5 8.1 9.9 2.5 3 2.5V5a10 10 0 0 1 10 10h2.5zm-5 0A7.5 7.5 0 0 0 3 7.5V10a5 5 0 0 1 5 5h2.5zm-5 0A2.5 2.5 0 0 0 3 12.5V15h2.5z"></path></svg>
+                </div>
+            </div>
+            <a class="s-modal--close s-btn s-btn__muted js-modal-close js-last-tabbable" href="#" aria-label="Close">
+                <svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7 12 3.41z"></path></svg>
+            </a>
+        </div>
+    </aside>
+            </div>
+    </div>
+<script>StackExchange.ready(function(){$.get('/posts/43809245/ivc/3c3c');});</script>
+<noscript><div><img src="/posts/43809245/ivc/3c3c" class="dno" alt="" width="0" height="0"></div></noscript><div style="display:none" id="prettify-lang">lang-js</div></div>
+
+
+        </div>
+    </div>
+
+
+<script>;try{(function(a){function b(a){return'string'==typeof a?document.getElementById(a):a}function c(a){return a=b(a),!!a&&'none'===getComputedStyle(a).display}function d(a){return!c(a)}function e(a){return!!a}function f(a){return /^\s*$/.test(b(a).innerHTML)}function g(a){var b=a.style;b.height=b.maxHeight=b.minHeight='auto',b.display='none',[].forEach.call(a.children,g)}function h(a,b){var c;return function(){return a&&(c=a.call(b||this,arguments),a=null),c}}function i(a){var b=document.createElement('script');b.src=a,document.body.appendChild(b)}function j(a){return k([],a)}function k(a,b){return a.push=function(a){return b(),delete this.push,this.push(a)},a}function l(){try{return!new Function('return async()=>{};')}catch(a){return!0}}function m(){return'undefined'!=typeof googletag&&!!googletag.apiReady}function n(){m()||(googletag={cmd:j(A)})}function o(){var a=document.createElement('div');a.className='adsbox',a.id='clc-abd',a.style.position='absolute',a.style.pointerEvents='none',a.innerHTML='&nbsp;',document.body.appendChild(a)}function p(a){var b=a.serviceName,c=a.slot,d=a.lineItemId;try{var e=c.getSlotElementId(),f=[];e||f.push('id=0');var h=document.getElementById(e);if(!e||h?h.hasAttribute('data-clc-stalled')&&f.push('st=1'):f.push('el=0'),0!==f.length)return void B(f.join('&'));if(-1!==x.dh.indexOf(d))g(h);else if(d&&(h.setAttribute('data-clc-prefilled','true'),'dfp-msb'==e)){var i=document.getElementById('hireme');g(i)}h.setAttribute('data-clc-ready','true')}catch(a){var j=document.querySelector('#dfp-tsb, #dfp-isb, #clc-tsb');j&&j.setAttribute('data-clc-ready','true'),B('e=1')}}function q(){return Object.keys(F.ids)}function r(a){var b=F.ids[a],c=F.slots[b];'function'==typeof c&&(c=c(a));return{path:'/'+C+'/'+E+'/'+b+'/'+D,sizes:c,zone:b}}function s(a){return!(clc.collapse&&void 0!==clc.collapse[a])||!!clc.collapse[a]}function t(a,b){'dfp-isb'===a&&b.setTargeting('Sidebar',['Inline']),'dfp-tsb'===a&&b.setTargeting('Sidebar',['Right']);var c=r(a),d=c.path,e=c.sizes,f=c.zone,g=googletag.defineSlot(d,e,a);s(f)&&g.setCollapseEmptyDiv(!0,!0),g.addService(b),!1}function u(b){var c=a.dfp&&a.dfp.targeting||{};Object.keys(c).forEach(function(a){b.setTargeting(a,c[a])})}function v(a){var g=a.map(b).filter(e);return{eligible:g.filter(f).filter(d),ineligible:g.filter(c)}}function w(b){if(void 0===b&&(b=q()),!m())return n(),void googletag.cmd.push(function(){return w(b)});var c=v(b),d=c.eligible,e=c.ineligible;if(e.forEach(g),0!==d.length){x.abd&&o(),googletag.destroySlots();var f=googletag.pubads();x.sf&&(f.setForceSafeFrame(!0),f.setSafeFrameConfig({allowOverlayExpansion:!0,allowPushExpansion:!0,sandbox:!0})),f.enableSingleRequest(),a.sreEvent||(f.addEventListener('slotRenderEnded',p),a.sreEvent=!0),u(f),d.forEach(function(a){t(a.id,f),a.setAttribute('data-dfp-zone','true')}),googletag.enableServices(),d.forEach(function(a){googletag.display(a.id)})}}var x=function(a){for(var b=[],c=1;c<arguments.length;c++)b[c-1]=arguments[c];for(var d,e=0,f=b;e<f.length;e++)for(var g in d=f[e],d)a[g]=d[g];return a}({"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=b34823b15e14","style":"https://cdn.sstatic.net/clc/styles/clc.min.css?v=c500cbc026c4","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false,"dh":[5171832659],"abd":true},a.options||{}),y=h(function(){var a=x.lib;l()&&(a=a.replace(/(\.min)?\.js(\?v=[0-9a-fA-F]+)?$/,'.ie$1.js$2')),i(a)}),z=a.cmd||[];Array.isArray(z)&&(0<z.length?y():k(z,y));var A=h(function(){i('https://www.googletagservices.com/tag/js/gpt.js')}),B=function(a){new Image().src='https://'+x.h+'/stalled.gif?'+a},C='248424177',D=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?'tag-pages':/^\/$/.test(location.pathname)||/^\/home/.test(location.pathname)?'home-page':'question-pages',E=location.hostname;var F={slots:{lb:[[728,90]],mlb:[[728,90]],smlb:[[728,90]],bmlb:[[728,90]],sb:function(a){return'dfp-tsb'===a?[[300,250],[300,600]]:[[300,250]]},"tag-sponsorship":[[730,135]],"mobile-below-question":[[320,50],[300,250]],msb:[[300,250],[300,600]]},ids:{"dfp-tlb":'lb',"dfp-mlb":'mlb',"dfp-smlb":'smlb',"dfp-bmlb":'bmlb',"dfp-tsb":'sb',"dfp-isb":'sb',"dfp-tag":'tag-sponsorship',"dfp-msb":'msb',"dfp-m-aq":'mobile-below-question',"clc-tlb":'lb',"clc-mlb":'mlb',"clc-tsb":'sb'}};(function(){var b=x.al;b&&z.push(function(){return a.load()})})(),n(),a.dfp={load:w},a.options=x,a.cmd=z})(this.clc=this.clc||{})}catch(a){window.console.error(a)}</script>    <script>
+        var clc = clc || {};
+        clc.collapse = { sb: !0, 'tag-sponsorship': !0, lb:!0, mlb:!0, smlb:!0, bmlb:!0, 'mobile-below-question':!0};
+        clc.options = clc.options || {};
+        clc.options.sf = !0;
+        clc.options.hb = !1;
+        clc.cmd = clc.cmd || [];
+        clc.cmd.push(function () { window.clc_request='Ahu2NXl1dNcIAAAAAN15nAICAAAAAgAAAAAwAAAAfGphdmFzY3JpcHR8bm9kZS5qc3xleHByZXNzfHdlYnNvY2tldHxzb2NrZXQuaW98AGCtoThw4GDdvCU'; clc.load(); });
+            </script><script src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/clc.js"></script>
+    
+    <footer id="footer" class="site-footer js-footer" role="contentinfo">
+        <div class="site-footer--container">
+                <div class="site-footer--logo">
+
+                    
+                    <a href="https://stackoverflow.com/"><svg aria-hidden="true" class="svg-icon native iconLogoGlyphMd" width="32" height="37" viewBox="0 0 32 37"><path d="M26 33v-9h4v13H0V24h4v9h22z" fill="#BCBBBB"></path><path d="M21.5 0l-2.7 2 9.9 13.3 2.7-2L21.5 0zM26 18.4L13.3 7.8l2.1-2.5 12.7 10.6-2.1 2.5zM9.1 15.2l15 7 1.4-3-15-7-1.4 3zm14 10.79l.68-2.95-16.1-3.35L7 23l16.1 2.99zM23 30H7v-3h16v3z" fill="#F48024"></path></svg></a>
+                </div>
+            
+            <nav class="site-footer--nav">
+                    <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                        <h5 class="-title"><a href="https://stackoverflow.com/" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                        <ul class="-list js-primary-footer-links">
+                            <li class="-item"><a href="https://stackoverflow.com/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                                     <li class="-item"><a href="https://stackoverflow.com/jobs/salary" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 28})">Salary Calculator</a></li>
+                                                            <li class="-item"><a href="https://stackoverflow.com/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                                <li class="-item"><a onclick='StackExchange.switchMobile("on")' class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                        <li class="-item"><a class="-link" role="button">Disable Responsiveness</a></li></ul>
+                    </div>
+                    <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                        <h5 class="-title"><a href="https://www.stackoverflowbusiness.com/" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Products</a></h5>
+                        <ul class="-list">
+                            <li class="-item"><a href="https://stackoverflow.com/teams" class="js-gps-track -link" data-ga="[&quot;teams traffic&quot;,&quot;footer - site nav&quot;,&quot;stackoverflow.com/teams&quot;,null,{&quot;dimension4&quot;:&quot;teams&quot;}]" data-gps-track="footer.click({ location: 2, link: 29 })">Teams</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/talent" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertising" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Advertising</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/enterprise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                        </ul>
+                    </div>
+                <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                    <h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                    <ul class="-list">
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                                                <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackoverflow.com/legal">Legal</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackoverflow.com/legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer--col site-footer--categories-nav site-footer--col__visible">
+                    <a href="#" class="site-footer--back js-footer-back"><svg aria-hidden="true" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewBox="0 0 18 18"><path d="M10.58 16L12 14.59 6.4 9 12 3.41 10.57 2l-7 7 7 7z"></path></svg></a>
+                    <div>
+                        <h5 class="-title"><a href="https://stackexchange.com/" data-gps-track="footer.click({ location: 2, link: 30 })">Stack Exchange<br> Network</a></h5>
+                        <ul class="-list">
+                            <li class="-item"><a href="#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="site-footer--categories">
+                    <div class="site-footer--col site-footer--category js-footer-col" data-name="Technology">
+        <ul class="-list">
+                <li class="-item"><a href="https://stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                <li class="-item"><a href="https://serverfault.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                <li class="-item"><a href="https://superuser.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                <li class="-item"><a href="https://webapps.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                <li class="-item"><a href="https://askubuntu.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                <li class="-item"><a href="https://webmasters.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                <li class="-item"><a href="https://gamedev.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://tex.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                <li class="-item"><a href="https://softwareengineering.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                <li class="-item"><a href="https://unix.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                <li class="-item"><a href="https://apple.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                <li class="-item"><a href="https://wordpress.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+                <li class="-item"><a href="https://gis.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                <li class="-item"><a href="https://electronics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://android.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                <li class="-item"><a href="https://security.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="information security professionals">Information Security</a></li>
+                <li class="-item"><a href="https://dba.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                <li class="-item"><a href="https://drupal.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+                <li class="-item"><a href="https://sharepoint.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+                <li class="-item"><a href="https://ux.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+                <li class="-item"><a href="https://mathematica.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://salesforce.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                <li class="-item"><a href="https://expressionengine.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                <li class="-item"><a href="https://pt.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores profissionais e entusiastas">Stack Overflow em Português</a></li>
+                <li class="-item"><a href="https://blender.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+                <li class="-item"><a href="https://networkengineering.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="network engineers">Network Engineering</a></li>
+                <li class="-item"><a href="https://crypto.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                <li class="-item"><a href="https://codereview.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://magento.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+                <li class="-item"><a href="https://softwarerecs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+                <li class="-item"><a href="https://dsp.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                <li class="-item"><a href="https://emacs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+                <li class="-item"><a href="https://raspberrypi.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                <li class="-item"><a href="https://ru.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="программистов">Stack Overflow на русском</a></li>
+                <li class="-item"><a href="https://codegolf.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programming puzzle enthusiasts and code golfers">Code Golf</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://es.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores y profesionales de la informática">Stack Overflow en español</a></li>
+                <li class="-item"><a href="https://ethereum.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+                <li class="-item"><a href="https://datascience.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+                <li class="-item"><a href="https://arduino.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="developers of open-source hardware and software that is compatible with Arduino">Arduino</a></li>
+                <li class="-item"><a href="https://bitcoin.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Bitcoin crypto-currency enthusiasts">Bitcoin</a></li>
+                <li class="-item"><a href="https://sqa.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="software quality control experts, automation engineers, and software testers">Software Quality Assurance &amp; Testing</a></li>
+                <li class="-item"><a href="https://sound.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="sound engineers, producers, editors, and enthusiasts">Sound Design</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://windowsphone.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="enthusiasts and power users of Windows Phone OS">Windows Phone</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (27)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Life / Arts">
+        <ul class="-list">
+                <li class="-item"><a href="https://photo.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                <li class="-item"><a href="https://scifi.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                <li class="-item"><a href="https://graphicdesign.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                <li class="-item"><a href="https://movies.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                <li class="-item"><a href="https://music.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                <li class="-item"><a href="https://worldbuilding.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                <li class="-item"><a href="https://video.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="engineers, producers, editors, and enthusiasts spanning the fields of video, and media creation">Video Production</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Life / Arts"><ul class="-list">
+                <li class="-item"><a href="https://cooking.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                <li class="-item"><a href="https://diy.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+                <li class="-item"><a href="https://money.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                <li class="-item"><a href="https://academia.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+                <li class="-item"><a href="https://law.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+                <li class="-item"><a href="https://fitness.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="physical fitness professionals, athletes, trainers, and those providing health-related needs">Physical Fitness</a></li>
+                <li class="-item"><a href="https://gardening.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="gardeners and landscapers">Gardening &amp; Landscaping</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Life / Arts"><ul class="-list">
+                <li class="-item"><a href="https://parenting.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="parents, grandparents, nannies and others with a parenting role">Parenting</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (11)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation">
+        <ul class="-list">
+                <li class="-item"><a href="https://english.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                <li class="-item"><a href="https://skeptics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                <li class="-item"><a href="https://judaism.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                <li class="-item"><a href="https://travel.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                <li class="-item"><a href="https://christianity.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                <li class="-item"><a href="https://ell.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                <li class="-item"><a href="https://japanese.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation"><ul class="-list">
+                <li class="-item"><a href="https://chinese.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Chinese language">Chinese Language</a></li>
+                <li class="-item"><a href="https://french.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the French language">French Language</a></li>
+                <li class="-item"><a href="https://german.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="speakers of German wanting to discuss the finer points of the language and translation">German Language</a></li>
+                <li class="-item"><a href="https://hermeneutics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professors, theologians, and those interested in exegetical analysis of biblical texts">Biblical Hermeneutics</a></li>
+                <li class="-item"><a href="https://history.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="historians and history buffs">History</a></li>
+                <li class="-item"><a href="https://spanish.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="linguists, teachers, students and Spanish language enthusiasts in general wanting to discuss the finer points of the language">Spanish Language</a></li>
+                <li class="-item"><a href="https://islam.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Muslims, experts in Islam, and those interested in learning more about Islam">Islam</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation"><ul class="-list">
+                <li class="-item"><a href="https://rus.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="лингвистов и энтузиастов русского языка">Русский язык</a></li>
+                <li class="-item"><a href="https://russian.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Russian language">Russian Language</a></li>
+                <li class="-item"><a href="https://gaming.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                <li class="-item"><a href="https://bicycles.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                <li class="-item"><a href="https://rpg.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                <li class="-item"><a href="https://anime.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+                <li class="-item"><a href="https://puzzling.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation"><ul class="-list">
+                <li class="-item"><a href="https://mechanics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                <li class="-item"><a href="https://boardgames.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who like playing board games, designing board games or modifying the rules of existing board games">Board &amp; Card Games</a></li>
+                <li class="-item"><a href="https://bricks.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="LEGO® and building block enthusiasts">Bricks</a></li>
+                <li class="-item"><a href="https://homebrew.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="dedicated home brewers and serious enthusiasts">Homebrewing</a></li>
+                <li class="-item"><a href="https://martialarts.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students and teachers of all martial arts">Martial Arts</a></li>
+                <li class="-item"><a href="https://outdoors.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who love being outdoors enjoying nature and wilderness, and learning about the required skills and equipment">The Great Outdoors</a></li>
+                <li class="-item"><a href="https://poker.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="serious players and enthusiasts of poker">Poker</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation"><ul class="-list">
+                <li class="-item"><a href="https://chess.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="serious players and enthusiasts of chess">Chess</a></li>
+                <li class="-item"><a href="https://sports.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="participants in team and individual sport activities">Sports</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (16)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Science">
+        <ul class="-list">
+                <li class="-item"><a href="https://mathoverflow.net/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                <li class="-item"><a href="https://math.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                <li class="-item"><a href="https://stats.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                <li class="-item"><a href="https://cstheory.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                <li class="-item"><a href="https://physics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                <li class="-item"><a href="https://chemistry.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientists, academics, teachers, and students in the field of chemistry">Chemistry</a></li>
+                <li class="-item"><a href="https://biology.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Science"><ul class="-list">
+                <li class="-item"><a href="https://cs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                <li class="-item"><a href="https://philosophy.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                <li class="-item"><a href="https://linguistics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional linguists and others with an interest in linguistic research and theory">Linguistics</a></li>
+                <li class="-item"><a href="https://psychology.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="practitioners, researchers, and students in cognitive science, psychology, neuroscience, and psychiatry">Psychology &amp; Neuroscience</a></li>
+                <li class="-item"><a href="https://scicomp.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientists using computers to solve scientific problems">Computational Science</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (8)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Other">
+        <ul class="-list">
+                <li class="-item"><a href="https://meta.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                <li class="-item"><a href="https://stackapps.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                <li class="-item"><a href="https://api.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                <li class="-item"><a href="https://data.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                    </ul>
+    </div>
+                </div>
+            </nav>
+            <div class="site-footer--copyright fs-fine">
+                <ul class="-list">
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog/?blb=1">Blog</a></li>
+                    <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 31 })">Facebook</a></li>
+                    <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 32 })">Twitter</a></li>
+                    <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 33 })">LinkedIn</a></li>
+                </ul>
+
+                <p class="mt-auto mb24">
+site design / logo © 2019 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 34 })" rel="license">cc by-sa 4.0</a>
+                            with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" class="js-gps-track" data-gps-track="footer.click({ location: 2, link:35 })" rel="license">attribution required</a>.
+                    <span id="svnrev">rev&nbsp;2019.11.27.35508</span>
+                </p>
+            </div>
+        </div>
+
+            </footer>
+            <script>StackExchange.ready(function () { StackExchange.responsiveness.addSwitcher(); })</script>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled
+            <img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno">
+        </div>
+    </noscript>
+
+<script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            StackExchange.ready(function () {
+
+                StackExchange.ga.init({
+                    sendTitles: true,
+                    tracker: window.ga,
+                    trackingCodes: [
+                        'UA-108242619-1'
+                    ],
+                        checkDimension: 'dimension42'
+                });
+
+
+
+                    StackExchange.ga.setDimension('dimension2', '|javascript|node.js|express|websocket|socket.io|');
+
+                    StackExchange.ga.setDimension('dimension3', 'Questions/Show');
+
+
+                StackExchange.ga.trackPageView();
+            });
+            
+/**/
+            
+            var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+            (function() {
+                var ssl = 'https:' == document.location.protocol,
+                    s = document.getElementsByTagName('script')[0],
+                    qc = document.createElement('script');
+                 qc.async = true;
+                    qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                    s.parentNode.insertBefore(qc, s);
+                    _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+/**/
+                 var sc = document.createElement('script');
+                    sc.async = true;
+                    sc.src = (ssl ? 'https://sb' : 'http://b') + '.scorecardresearch.com/beacon.js';
+                    s.parentNode.insertBefore(sc, s);
+                    _comscore.push({ c1: "2", c2: "17440561" });
+            })();
+            
+
+</script>
+            
+    
+    
+<script src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/markup.js"></script><script src="javascript%20-%20How%20the%20emit%20function%20of%20socket%20io%20works%20%20-%20Stack%20Overflow%20Archivos/gpt.js"></script><div class="adsbox" id="clc-abd" style="position: absolute; pointer-events: none;">&nbsp;</div></body></html>

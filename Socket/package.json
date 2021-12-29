@@ -1,0 +1,25 @@
+{
+  "name": "Socket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "expo-server-sdk": "^3.4.0",
+    "express": "^4.17.1",
+    "md5": "^2.2.1",
+    "mysql": "^2.17.1",
+    "node-static": "^0.7.11",
+    "nodemon": "^2.0.1",
+    "socket.io": "^2.3.0",
+    "websocket": "^1.0.30",
+    "ws": "^7.2.0"
+  }
+}

@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta name="viewport" content="width=500, initial-scale=1">
+    <style>
+        *{box-sizing: border-box; margin:0; padding: 0;}
+        #div{ height: 100%; background-color: rgb(219, 219, 219); display: flex; align-items: center; justify-content: center;}
+        #div2{
+        width:340px; height:135px; position:relative; overflow:hidden;
+        border-radius:6px; margin:0; padding:0;
+        padding:10px; border:0px solid rgba(0,0,0,0.1);
+        background-color:#535353; box-shadow:1px 1px 8px rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center;
+        transform-origin:center;
+        transform:scale(0);
+        animation-name: init;
+        animation-duration: 0.4s;
+        animation-fill-mode: forwards;
+        transition: ease-in-out;
+        }
+        #btn:hover { cursor:pointer; }
+        @keyframes init {
+            from {
+                transform-origin: center;
+                transform:scale(0);
+                transition: ease-in-out;
+            }
+
+            to {
+                transform-origin: center;
+                transform:scale(1);
+                transition: ease-in-out;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="div">
+        <div id="div2">
+            <div style='width:100%; height:30px; background-color:#404040; border-bottom:1px solid rgba(0,0,0,0.6); display:flex; align-items:center; position:absolute; top:0; left:0;'>
+                <p style='color:white; font-family:arial; padding:0 20px; font-size:12px; font-weight:bold;'>No puedes acceder a la API de Parallevar</p>
+            </div>
+    
+            <div style='width:100%; height:40px; position:absolute; top:40px; left:0;'>
+                <p style='color:rgb(207, 207, 207); font-family:arial; font-size:11px; padding:0 20px;'>Es necesario tener una API Key legitima para conectarte a la API de Parallevar, por favor descarga la App en la PlayStore para Android y la AppStore para iOS.</p>
+            </div>
+    
+            <div id='btn' style='width:90px;  height:25px; position:absolute; left:50%; bottom:4px; box-shadow:0px 0px 2px rgba(0,0,0,0.3); border:0px solid rgba(0,0,0,0.5); transform:translateY(-50%) translateX(-50%); border-radius:4px; background-color:#ff1b1b; display:flex; align-items:center; justify-content:center;'>
+            <p style='color:white; font-family:arial; font-size:11px; padding:0 20px;'>Aceptar</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
